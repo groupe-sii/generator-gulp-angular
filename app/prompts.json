@@ -1,5 +1,9 @@
 [
   {
+    "type": "input",
+    "name": "appName",
+    "message": "Project name please ?"
+  },{
     "type": "list",
     "name": "angularVersion",
     "message": "Which version of Angular do you want?",
@@ -60,15 +64,9 @@
     "choices": [
       {
         "value": {
-          "key": "jquery2"
+          "key": "none"
         },
-        "name": "jQuery 2.x (new version, lighter, IE9+)"
-      },
-      {
-        "value": {
-          "key": "jquery1"
-        },
-        "name": "jQuery 1.x (branch still supporting IE6, 7 and 8)"
+        "name": "None (Angular will use its own jqLite)"
       },
       {
         "value": {
@@ -78,9 +76,15 @@
       },
       {
         "value": {
-          "key": "none"
+          "key": "jquery2"
         },
-        "name": "None (Angular will use its own jqLite)"
+        "name": "jQuery 2.x (new version, lighter, IE9+)"
+      },
+      {
+        "value": {
+          "key": "jquery1"
+        },
+        "name": "jQuery 1.x (branch still supporting IE6, 7 and 8)"
       }
     ]
   },
@@ -91,17 +95,17 @@
     "choices": [
       {
         "value": {
-          "key": "angular-resource",
-          "module": "ngResource"
-        },
-        "name": "ngResource, the official support for RESTful services"
-      },
-      {
-        "value": {
           "key": "restangular",
           "module": "restangular"
         },
         "name": "Restangular, an alternative service to handles RESTful requests"
+      },
+      {
+        "value": {
+          "key": "angular-resource",
+          "module": "ngResource"
+        },
+        "name": "ngResource, the official support for RESTful services"
       },
       {
         "value": {
