@@ -3,8 +3,6 @@
     ".bowerrc",
     ".editorconfig",
 
-    "protractor.conf.js",
-
     "gulpfile.js",
     "gulp/.jshintrc",
     "gulp/e2e-tests.js",
@@ -36,8 +34,6 @@
     "package.json",
     "bower.json",
     "tsd.json",
-
-    "karma.conf.js",
 
     "gulp/conf.js",
     "gulp/doc.js",
