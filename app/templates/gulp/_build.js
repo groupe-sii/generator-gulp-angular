@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del', 'plato', 'run-sequence']
 });
 
 <% if (props.htmlPreprocessor.key === 'none') { -%>
@@ -27,6 +27,13 @@ gulp.task('partials', ['markups'], function () {
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
+});
+
+gulp.task('plato', function() {
+    return $.plato.inspect(conf.paths.src + '/{app,components}/**/*.js', 'tools/reports/plato/', {
+        title: '<%- props.appName %> Plato report',
+        exclude: /.*\.spec\.js/
+    }, function() {});
 });
 
 gulp.task('html', ['inject', 'partials'], function () {
@@ -123,5 +130,10 @@ gulp.task('clean', function (done) {
 <% if (imageMin) { -%>
 gulp.task('build', ['html', 'images', 'fonts', 'other']);
 <% } else { -%>
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', function() {
+    return $.runSequence(
+        'clean', 'html', 'fonts', 'other', 'plato'
+    );
+});
+
 <% } -%>
