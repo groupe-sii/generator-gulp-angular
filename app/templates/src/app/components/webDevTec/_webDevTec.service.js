@@ -1,6 +1,14 @@
 (function() {
   'use strict';
 
+  /**
+ * @ngdoc service
+ * @name  testGeneratorAngularSii.service:webDevTec
+ * @description
+ *
+ * Gestion des webDevTec
+ */
+
   angular
       .module('<%- appName %>')
       .service('webDevTec', webDevTec);

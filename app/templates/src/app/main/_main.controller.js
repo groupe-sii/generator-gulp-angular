@@ -1,6 +1,14 @@
 (function() {
   'use strict';
 
+  /**
+ * @ngdoc controller
+ * @name  testGeneratorAngularSii.controller:MainController
+ * @description
+ *
+ * Main Controller
+ */
+
   angular
     .module('<%- appName %>')
     .controller('MainController', MainController);
