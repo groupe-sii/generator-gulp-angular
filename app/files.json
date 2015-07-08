@@ -3,6 +3,8 @@
     ".bowerrc",
     ".editorconfig",
 
+    ".jscsrc",
+
     "gulpfile.js",
     "gulp/.jshintrc",
     "gulp/e2e-tests.js",
