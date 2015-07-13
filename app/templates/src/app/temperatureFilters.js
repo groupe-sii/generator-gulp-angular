@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('temperatureFactory')
+angular.module('temperatureFactory', [])
 .filter('celsiusToFahrenheit', function() {
     return function(input) {
         return temperatureConverter.celsiusToFahrenheit(input);
