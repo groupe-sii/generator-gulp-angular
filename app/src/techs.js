@@ -39,11 +39,7 @@ module.exports = function(GulpAngularGenerator) {
     usedTechs.forEach(function(value) {
       var path ='src/assets/images/' + listTechs[value].logo;
 
-      this.files.push({
-        src: path,
-        dest: path,
-        template: false
-      });
+
     }, this);
   };
 
