@@ -83,6 +83,7 @@
     "wiredep": "~2.2.2",
     "concat-stream": "~1.5.0",
     "require-dir": "~0.3.0",
+    "minimist": "^1.1.1",
     "plato": "1.5.0",
     "browser-sync": "~2.7.13",
     "browser-sync-spa": "~1.0.2",

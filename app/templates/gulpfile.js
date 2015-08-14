@@ -6,8 +6,15 @@
 
 'use strict';
 
-var gulp = require('gulp');
-var wrench = require('wrench');
+var gulp = require('gulp'),
+    wrench = require('wrench'),
+    minimist = require('minimist'),
+    knownOptions = {
+        string: 'env',
+        default: {
+            env: process.env.NODE_ENV || 'development' || 'test'
+        }
+    };
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -19,6 +26,7 @@ wrench.readdirSyncRecursive('./gulp').filter(function(file) {
   require('./gulp/' + file);
 });
 
+gulp.options = minimist(process.argv.slice(2), knownOptions);
 
 /**
  *  Default task clean temporaries directories and launch the

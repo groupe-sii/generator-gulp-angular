@@ -132,7 +132,7 @@ gulp.task('build', ['html', 'images', 'fonts', 'other']);
 <% } else { -%>
 gulp.task('build', function() {
     return $.runSequence(
-        'clean', 'html', 'fonts', 'other', 'plato'
+        'clean', 'config', 'html', 'fonts', 'other', 'plato'
     );
 });
 
