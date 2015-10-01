@@ -2,7 +2,7 @@
 <html<% if (includeModernizr) { %> class="no-js"<% } %> ng-app="<%- appName %>">
   <head>
     <meta charset="utf-8">
-    <title><%- appName %></title>
+    <title><% if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>{{ 'app.title' | translate }}<% } else { -%><%- appName %><% } -%></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->

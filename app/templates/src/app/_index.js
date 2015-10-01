@@ -19,10 +19,10 @@
     function config(<%- props.baseInjections %>) {
 <% if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>
         // Translation
-        var language = _.find(AVAILABLE_LANGUAGES, {code: navigator.browserLanguage || navigator.language});
+        var language = navigator.browserLanguage || navigator.language;
         $translateProvider.translations('en', LANGUAGES.en);
         $translateProvider.translations('fr', LANGUAGES.fr);
-        $translateProvider.preferredLanguage((language) ? language.code : 'en');
+        $translateProvider.preferredLanguage((angular.isDefined(LANGUAGES[language])) ? language : 'en');
 <% } -%>
     }
 
