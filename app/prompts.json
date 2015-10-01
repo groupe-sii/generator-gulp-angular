@@ -312,53 +312,6 @@
   },
   {
     "type": "list",
-    "name": "jsPreprocessor",
-    "message": "Which JS preprocessor do you want?",
-    "choices": [
-      {
-        "value": {
-          "key": "noJsPrepro",
-          "extension": "js",
-          "srcExtension": "js"
-        },
-        "name": "None, I like to code in standard JavaScript."
-      },
-      {
-        "value": {
-          "key": "babel",
-          "extension": "js",
-          "srcExtension": "es6"
-        },
-        "name": "ES6 (Babel formerly 6to5), ECMAScript 6 compiled with Babel which requires no runtime."
-      },
-      {
-        "value": {
-          "key": "traceur",
-          "extension": "js",
-          "srcExtension": "es6"
-        },
-        "name": "ES6 (Traceur), ECMAScript 6 compiled with the Traceur compiler from Google."
-      },
-      {
-        "value": {
-          "key": "coffee",
-          "extension": "coffee",
-          "srcExtension": "coffee"
-        },
-        "name": "CoffeeScript, \"a little language that compiles into JavaScript\"."
-      },
-      {
-        "value": {
-          "key": "typescript",
-          "extension": "ts",
-          "srcExtension": "ts"
-        },
-        "name": "TypeScript, a typed superset of JavaScript that compiles to plain JavaScript."
-      }
-    ]
-  },
-  {
-    "type": "list",
     "name": "htmlPreprocessor",
     "message": "Which HTML template engine would you want?",
     "choices": [

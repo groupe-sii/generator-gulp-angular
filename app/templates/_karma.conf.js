@@ -23,19 +23,10 @@ function listFiles() {
 
   return wiredep(wiredepOptions).js
     .concat([
-<% if (props.jsPreprocessor.key === 'noJsPrepro') { -%>
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
       path.join(conf.paths.src, '/**/*.mock.js'),
-<% } else if (props.jsPreprocessor.key === 'coffee') { -%>
-      path.join(conf.paths.tmp, '/serve/app/**/*.module.js'),
-      path.join(conf.paths.tmp, '/serve/app/**/*.js'),
-      path.join(conf.paths.tmp, '/**/*.spec.js'),
-      path.join(conf.paths.tmp, '/**/*.mock.js'),
-<% } else { -%>
-      path.join(conf.paths.tmp, '/serve/app/index.module.js'),
-<% } -%>
     ])
     .concat(pathSrcHtml);
 }
@@ -56,33 +47,17 @@ module.exports = function(config) {
 
     logLevel: 'WARN',
 
-<% if (props.jsPreprocessor.key === 'noJsPrepro' || props.jsPreprocessor.key === 'coffee') { -%>
     frameworks: ['jasmine', 'angular-filesort'],
 
     angularFilesort: {
-<%   if (props.jsPreprocessor.key === 'noJsPrepro') { -%>
       whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
-<%   } else { -%>
-      whitelist: [path.join(conf.paths.tmp, '/**/!(*.html|*.spec|*.mock).js')]
-<%   } -%>
     },
-<% } else { -%>
-    frameworks: ['jasmine'],
-<% } -%>
 
-<% if(props.jsPreprocessor.key === 'traceur') { -%>
-    browsers : ['Chrome'],
-
-    plugins : [
-      'karma-chrome-launcher',
-<% } else { -%>
     browsers : ['PhantomJS'],
 
     plugins : [
       'karma-phantomjs-launcher',
-<% } if (props.jsPreprocessor.key === 'noJsPrepro' || props.jsPreprocessor.key === 'coffee') { -%>
       'karma-angular-filesort',
-<% } -%>
       'karma-coverage',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'

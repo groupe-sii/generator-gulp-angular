@@ -1,9 +1,5 @@
 <!doctype html>
-<% if (props.jsPreprocessor.srcExtension !== 'es6' && props.jsPreprocessor.key !== 'typescript') { -%>
 <html<% if (includeModernizr) { %> class="no-js"<% } %> ng-app="<%- appName %>">
-<% } else { -%>
-<html<% if (includeModernizr) { %> class="no-js"<% } %> ng-app="<%- appName %>" ng-strict-di>
-<% } -%>
   <head>
     <meta charset="utf-8">
     <title><%- appName %></title>
@@ -42,11 +38,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-<% if (props.jsPreprocessor.srcExtension === 'es6') { -%>
-    <!-- build:js({<%- props.paths.tmp %>/serve,<%- props.paths.tmp %>/partials}) scripts/app.js -->
-<% } else { -%>
     <!-- build:js({<%- props.paths.tmp %>/serve,<%- props.paths.tmp %>/partials,<%- props.paths.src %>}) scripts/app.js -->
-<% } -%>
     <!-- inject:js -->
     <!-- js files will be automatically insert here -->
     <!-- endinject -->

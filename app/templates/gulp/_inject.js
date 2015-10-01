@@ -23,25 +23,12 @@ gulp.task('inject', ['scripts'], function () {
 <% } -%>
 
     var injectScripts = gulp.src([
-<% if (props.jsPreprocessor.srcExtension === 'es6' || props.jsPreprocessor.srcExtension === 'ts') { -%>
-        path.join(conf.paths.tmp, '/serve/app/**/*.module.js')
-<% } -%>
-<% if (props.jsPreprocessor.srcExtension === 'js' || props.jsPreprocessor.srcExtension === 'coffee') { -%>
         path.join(conf.paths.src, '/app/**/*.module.js'),
         path.join(conf.paths.src, '/app/**/*.js'),
         path.join('!' + conf.paths.src, '/app/**/*.spec.js'),
         path.join('!' + conf.paths.src, '/app/**/*.mock.js'),
-<% if (props.jsPreprocessor.srcExtension === 'coffee') { -%>
-        path.join(conf.paths.tmp, '/serve/app/**/*.module.js'),
-        path.join(conf.paths.tmp, '/serve/app/**/*.js'),
-        path.join('!' + conf.paths.tmp, '/serve/app/**/*.spec.js'),
-        path.join('!' + conf.paths.tmp, '/serve/app/**/*.mock.js')
-<% } -%>
     ])
     .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'));
-<% } else {-%>
-    ], {read: false});
-<% } -%>
 
     var injectOptions = {
         ignorePath: [conf.paths.src, path.join(conf.paths.tmp, '/serve')],

@@ -23,7 +23,6 @@ var questions = [
     'bootstrapComponents',
     'foundationComponents',
     'cssPreprocessor',
-    'jsPreprocessor',
     'htmlPreprocessor',
     'otherModules'
 ];
@@ -76,10 +75,6 @@ model.cssPreprocessor.choices.forEach(function(choice) {
     model.cssPreprocessor.values[choice.value.key] = choice.value;
 });
 
-model.jsPreprocessor.choices.forEach(function(choice) {
-    model.jsPreprocessor.values[choice.value.key] = choice.value;
-});
-
 model.htmlPreprocessor.choices.forEach(function(choice) {
     model.htmlPreprocessor.values[choice.value.key] = choice.value;
 });
@@ -100,7 +95,6 @@ module.exports = {
         bootstrapComponents: model.bootstrapComponents.values['ui-bootstrap'],
         foundationComponents: model.foundationComponents.values.noFoundationComponents,
         cssPreprocessor: model.cssPreprocessor.values['node-sass'],
-        jsPreprocessor: model.jsPreprocessor.values.noJsPrepro,
         htmlPreprocessor: model.htmlPreprocessor.values.noHtmlPrepro,
         otherModules: _.pluck(model.otherModules.choices, 'value')
     }

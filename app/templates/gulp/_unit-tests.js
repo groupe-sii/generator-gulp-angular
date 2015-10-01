@@ -16,13 +16,7 @@ var pathSrcHtml = [
 ];
 
 var pathSrcJs = [
-<% if (props.jsPreprocessor.key === 'noJsPrepro') { -%>
   path.join(conf.paths.src, '/**/!(*.spec).js')
-<% } else if (props.jsPreprocessor.key === 'coffee') { -%>
-  path.join(conf.paths.tmp, '/**/!(*.spec).js')
-<% } else { -%>
-  path.join(conf.paths.tmp, '/serve/app/index.module.js')
-<% } -%>
 ];
 
 function runTests (singleRun, done) {
@@ -54,7 +48,6 @@ function runTests (singleRun, done) {
   server.start();
 }
 
-<% if (props.jsPreprocessor.srcExtension !== 'es6' && props.jsPreprocessor.key !== 'typescript') { -%>
 gulp.task('test', ['scripts'], function(done) {
   runTests(true, done);
 });
@@ -62,12 +55,3 @@ gulp.task('test', ['scripts'], function(done) {
 gulp.task('test:auto', ['watch'], function(done) {
   runTests(false, done);
 });
-<% } else { -%>
-gulp.task('test', ['scripts:test'], function(done) {
-  runTests(true, done);
-});
-
-gulp.task('test:auto', ['scripts:test-watch'], function(done) {
-  runTests(false, done);
-});
-<% } -%>

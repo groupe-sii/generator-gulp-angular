@@ -8,11 +8,9 @@ module.exports = function(GulpAngularGenerator) {
      * Compute Angular's other modules to load and format the dependency list to insert
      */
     GulpAngularGenerator.prototype.computeOtherModules = function computeOtherModules() {
-        console.log(this.props.otherModulesKeys, _.includes(this.props.otherModulesKeys, 'translate'));
 
         // angular-translate
         if(_.includes(this.props.otherModulesKeys, 'translate')) {
-            console.log('ADD');
             this.files.push({
                 src: 'config/languages/_en.json',
                 dest: 'config/languages/en.json',

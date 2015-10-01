@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-
 var files = require('../files.json');
 
 /**
@@ -10,42 +9,41 @@ var files = require('../files.json');
  * Look for the js preprocessor equivalent file and use it if exist
  */
 function resolvePaths(template) {
-  return function(file) {
-    var src = file, dest = file;
+    return function(file) {
+        var src = file,
+            dest = file;
 
-    if(template) {
-      var basename = path.basename(file);
-      src = file.replace(basename, '_' + basename);
-    }
+        if (template) {
+            var basename = path.basename(file);
+            src = file.replace(basename, '_' + basename);
+        }
 
-    if(src.match(/\.js$/)) {
-      var preprocessorFile = this.sourceRoot() + '/' + src.replace(/\.js$/, '.' + this.props.jsPreprocessor.srcExtension);
-      if(this.fs.exists(preprocessorFile)) {
-        src = src.replace(/\.js$/, '.' + this.props.jsPreprocessor.srcExtension);
-        dest = dest.replace(/\.js$/, '.' + this.props.jsPreprocessor.extension);
-      }
-    }
+        if (src.match(/\.js$/)) {
+            var preprocessorFile = this.sourceRoot() + '/' + src.replace(/\.js$/, '.js');
+            if (this.fs.exists(preprocessorFile)) {
+                src = src.replace(/\.js$/, '.js');
+                dest = dest.replace(/\.js$/, '.js');
+            }
+        }
 
-    return {
-      src: src,
-      dest: dest,
-      template: template
+        return {
+            src: src,
+            dest: dest,
+            template: template
+        };
     };
-  };
 }
 
 module.exports = function(GulpAngularGenerator) {
 
-  /**
-   * Prepare all files from files.json and add them to `this.files` as
-   * copy description object
-   */
-  GulpAngularGenerator.prototype.prepareFiles = function prepareFiles() {
+    /**
+     * Prepare all files from files.json and add them to `this.files` as copy description object
+     */
+    GulpAngularGenerator.prototype.prepareFiles = function prepareFiles() {
+        this.files = []
+            .concat(files.staticFiles.map(resolvePaths(false), this))
+            .concat(files.templates.map(resolvePaths(true), this));
 
-    this.files = []
-      .concat(files.staticFiles.map(resolvePaths(false), this))
-      .concat(files.templates.map(resolvePaths(true), this));
-
-  };
+    };
 
 };
