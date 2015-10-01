@@ -2,25 +2,23 @@
   "staticFiles": [
     ".bowerrc",
     ".editorconfig",
-
     ".jscsrc",
 
+    "tsconfig.json",
+    "protractor.conf.js",
+
     "gulpfile.js",
-    "gulp/.jshintrc",
-    "gulp/tsd.js",
-
-    "test/intern-browser.js",
-    "test/intern-browser.local.IE.js",
-    "test/intern-browser.local.js",
-    "test/intern-vanilla.js",
-    "test/js/temperatureConverter.spec.js",
-    "test/js/temperatureFilters.spec.js",
-
-    "tools/jenkins.sh",
+    "gulp/.eslintrc",
 
     "src/favicon.ico",
-    "src/app/temperatureConverter.js",
-    "src/app/temperatureFilters.js",
+    "src/assets/images/yeoman.png",
+
+    "tests/intern-browser.js",
+    "tests/intern-browser.local.IE.js",
+    "tests/intern-browser.local.js",
+    "tests/intern-vanilla.js",
+
+    "tools/jenkins.sh",
 
     "config/development/project.service.config.json",
     "config/production/project.service.config.json",
@@ -39,23 +37,33 @@
     "bower.json",
     "tsd.json",
 
-    "gulp/conf.js",
-    "gulp/doc.js",
+    "karma.conf.js",
+
     "gulp/build.js",
+    "gulp/conf.js",
     "gulp/config.js",
+    "gulp/doc.js",
     "gulp/inject.js",
     "gulp/lint.js",
     "gulp/markups.js",
+    "gulp/release.js",
     "gulp/scripts.js",
-    "gulp/styles.js",
-    "gulp/watch.js",
     "gulp/server.js",
+    "gulp/styles.js",
     "gulp/tests.js",
+    "gulp/unit-tests.js",
+    "gulp/watch.js",
 
     "src/app/index.js",
     "src/index.html",
-    "src/doc/accueil.ngdoc",
-    "src/doc/project.doc.css",
-    "src/app/main/main.controller.js"
+    "src/app/main/main.controller.js",
+    "src/app/components/navbar/navbar.directive.js",
+    "src/app/components/navbar/navbar.directive.spec.js",
+    "src/app/components/malarkey/malarkey.directive.js",
+    "src/app/components/malarkey/malarkey.directive.spec.js",
+    "src/app/components/webDevTec/webDevTec.service.js",
+    "src/app/components/webDevTec/webDevTec.service.spec.js",
+    "src/app/components/githubContributor/githubContributor.service.js",
+    "src/app/components/githubContributor/githubContributor.service.spec.js"
   ]
 }

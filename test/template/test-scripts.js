@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -23,20 +22,8 @@ describe('gulp-angular scripts template', function () {
     model = mockModel();
   });
 
-  it('should add tsd:install as dependencies for typescript', function() {
-    model.props.jsPreprocessor.key = 'not typescript';
-    var result = scripts(model);
-    result.should.match(/gulp\.task\('scripts', function/);
-    result.should.not.match(/typescript\.createProject/);
-
-    model.props.jsPreprocessor.key = 'typescript';
-    result = scripts(model);
-    result.should.match(/gulp\.task\('scripts', \['tsd:install'\]/);
-    result.should.match(/tsProject = \$\.typescript\.createProject/);
-  });
-
   it('should add the right js preprocessor process', function() {
-    model.props.jsPreprocessor.key = 'none';
+    model.props.jsPreprocessor.key = 'noJsPrepro';
     var result = scripts(model);
     result.should.not.match(/babel/);
     result.should.not.match(/coffee/);
@@ -56,9 +43,9 @@ describe('gulp-angular scripts template', function () {
     model.props.jsPreprocessor.key = 'typescript';
     model.props.jsPreprocessor.extension = 'ts';
     result = scripts(model);
-    result.should.match(/gulp\.src.*conf\.paths\.src, '.*\.ts'/);
-    result.should.match(/\$\.tslint\(/);
-    result.should.match(/\$\.typescript\(/);
+    result.should.match(/function webpackWrapper\(watch, test, callback\)/);
+    result.should.match(/loaders:.*loaders: \['ng-annotate', 'awesome-typescript-loader'/);
+    result.should.match(/gulp\.task\('scripts:watch'/);
     result.should.not.match(/babel/);
     result.should.not.match(/traceur/);
     result.should.not.match(/coffee/);
@@ -67,8 +54,8 @@ describe('gulp-angular scripts template', function () {
     model.props.jsPreprocessor.extension = 'js';
     model.props.jsPreprocessor.srcExtension = 'es6';
     result = scripts(model);
-    result.should.match(/function webpackWrapper\(watch, callback\)/);
-    result.should.match(/loaders:.*loader: 'babel-loader'/);
+    result.should.match(/function webpackWrapper\(watch, test, callback\)/);
+    result.should.match(/loaders:.*loaders: \['ng-annotate', 'babel-loader'/);
     result.should.match(/gulp\.task\('scripts:watch'/);
     result.should.not.match(/traceur/);
     result.should.not.match(/coffee/);
@@ -78,8 +65,8 @@ describe('gulp-angular scripts template', function () {
     model.props.jsPreprocessor.extension = 'js';
     model.props.jsPreprocessor.srcExtension = 'es6';
     result = scripts(model);
-    result.should.match(/function webpackWrapper\(watch, callback\)/);
-    result.should.match(/loaders:.*loader: 'traceur-loader'/);
+    result.should.match(/function webpackWrapper\(watch, test, callback\)/);
+    result.should.match(/loaders:.*loaders: \['ng-annotate', 'traceur-loader'/);
     result.should.match(/gulp\.task\('scripts:watch'/);
     result.should.not.match(/babel/);
     result.should.not.match(/coffee/);

@@ -1,28 +1,31 @@
-'use strict';
+(function() {
+    'use strict';
 
-/* globals angular */
+    /**
+     * @ngdoc object
+     * @name <%- appName %>
+     * @description <%- appName %> main module
+     */
+    angular
+        .module('<%- appName %>', [
+            <%- modulesDependencies %>
+        ])
+        .config(config)
+        .run(run);
 
-/**
- * @ngdoc object
- * @name  <%- props.appName %>
- * @description
- *
- * Main module of <%- appName %> application
- */
+    config.$inject = [<%- props.baseInjectionsQuotes %>];
 
-angular
-    .module('<%- props.appName %>', [<%- modulesDependencies %>])
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-        $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'app/main/main.html',
-                controller: 'MainController',
-                controllerAs: 'main'
-            });
+    /* @ngInject */
+    function config(<%- props.baseInjections %>) {
+<% if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>
+        // Translation
+        var language = _.find(AVAILABLE_LANGUAGES, {code: navigator.browserLanguage || navigator.language});
+        $translateProvider.translations('en', LANGUAGES.en);
+        $translateProvider.translations('fr', LANGUAGES.fr);
+        $translateProvider.preferredLanguage((language) ? language.code : 'en');
+<% } -%>
+    }
 
-        $urlRouterProvider.otherwise('/');
-    }])
-    .run([function() {
-
-    }]);
+    /* @ngInject */
+    function run() {}
+})();

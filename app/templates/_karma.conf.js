@@ -6,6 +6,15 @@ var conf = require('./gulp/conf');
 var _ = require('lodash');
 var wiredep = require('wiredep');
 
+var pathSrcHtml = [
+<% if (props.htmlPreprocessor.key === 'noHtmlPrepro') { -%>
+  path.join(conf.paths.src, '/**/*.html')
+<% } else { -%>
+  path.join(conf.paths.tmp, '/serve/app/**/*.html'),
+  path.join(conf.paths.src, '/**/*.html')
+<% } -%>
+];
+
 function listFiles() {
   var wiredepOptions = _.extend({}, conf.wiredep, {
     dependencies: true,
@@ -14,7 +23,7 @@ function listFiles() {
 
   return wiredep(wiredepOptions).js
     .concat([
-<% if (props.jsPreprocessor.key === 'none') { -%>
+<% if (props.jsPreprocessor.key === 'noJsPrepro') { -%>
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
@@ -26,11 +35,9 @@ function listFiles() {
       path.join(conf.paths.tmp, '/**/*.mock.js'),
 <% } else { -%>
       path.join(conf.paths.tmp, '/serve/app/index.module.js'),
-      path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
 <% } -%>
-      path.join(conf.paths.src, '/**/*.html')
-    ]);
+    ])
+    .concat(pathSrcHtml);
 }
 
 module.exports = function(config) {
@@ -49,37 +56,18 @@ module.exports = function(config) {
 
     logLevel: 'WARN',
 
-<% if (props.jsPreprocessor.key === 'none' || props.jsPreprocessor.key === 'coffee') { -%>
+<% if (props.jsPreprocessor.key === 'noJsPrepro' || props.jsPreprocessor.key === 'coffee') { -%>
     frameworks: ['jasmine', 'angular-filesort'],
 
     angularFilesort: {
-<%   if (props.jsPreprocessor.key === 'none') { -%>
+<%   if (props.jsPreprocessor.key === 'noJsPrepro') { -%>
       whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
 <%   } else { -%>
       whitelist: [path.join(conf.paths.tmp, '/**/!(*.html|*.spec|*.mock).js')]
 <%   } -%>
     },
-
-    reporters: ['progress', 'coverage'],
-
-    preprocessors: {
-      'src/**/*.html': ['ng-html2js'],
-<%   if (props.jsPreprocessor.key === 'none') { -%>
-      'src/**/!(*.spec).js': ['coverage']
-<%   } else { -%>
-      '.tmp/**/!(*.spec).js': ['coverage']
-<%   } -%>
-    },
-
-    // optionally, configure the reporter
-    coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
-    },
 <% } else { -%>
     frameworks: ['jasmine'],
-
-    reporters: ['progress'],
 <% } -%>
 
 <% if(props.jsPreprocessor.key === 'traceur') { -%>
@@ -92,14 +80,30 @@ module.exports = function(config) {
 
     plugins : [
       'karma-phantomjs-launcher',
-<% } if (props.jsPreprocessor.key === 'none' || props.jsPreprocessor.key === 'coffee') { -%>
+<% } if (props.jsPreprocessor.key === 'noJsPrepro' || props.jsPreprocessor.key === 'coffee') { -%>
       'karma-angular-filesort',
-      'karma-coverage',
 <% } -%>
+      'karma-coverage',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
-    ]
+    ],
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
+
+    reporters: ['progress']
   };
+
+  // This is the default preprocessors configuration for a usage with Karma cli
+  // The coverage preprocessor in added in gulp/unit-test.js only for single tests
+  // It was not possible to do it there because karma doesn't let us now if we are
+  // running a single test or not
+  configuration.preprocessors = {};
+  pathSrcHtml.forEach(function(path) {
+    configuration.preprocessors[path] = ['ng-html2js'];
+  });
 
   // This block is needed to execute Chrome on Travis
   // If you ever plan to use Chrome and Travis, you can keep it

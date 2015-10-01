@@ -38,11 +38,11 @@ module.exports = function(GulpAngularGenerator) {
   GulpAngularGenerator.prototype.computeWatchTaskDeps = function computeInjectTaskDeps() {
     this.watchTaskDeps = [];
 
-    if (this.props.jsPreprocessor.srcExtension === 'es6') {
+    if (this.props.jsPreprocessor.srcExtension === 'es6' || this.props.jsPreprocessor.srcExtension === 'ts') {
       this.watchTaskDeps.push('\'scripts:watch\'');
     }
 
-    if (this.props.htmlPreprocessor.key !== 'none') {
+    if (this.props.htmlPreprocessor.key !== 'noHtmlPrepro') {
       this.watchTaskDeps.push('\'markups\'');
     }
 
@@ -56,25 +56,25 @@ module.exports = function(GulpAngularGenerator) {
    * depending on options. This step reject these files.
    */
   GulpAngularGenerator.prototype.rejectFiles = function rejectFiles() {
-      if(this.props.cssPreprocessor.key === 'none') {
+      if(this.props.cssPreprocessor.key === 'noCssPrepro') {
         rejectWithRegexp.call(this, /styles\.js/);
       }
 
       if(this.props.jsPreprocessor.key !== 'typescript') {
-        rejectWithRegexp.call(this, /tsd\.js/);
         rejectWithRegexp.call(this, /tsd\.json/);
+        rejectWithRegexp.call(this, /tsconfig\.json/);
       }
 
       if(this.props.jsPreprocessor.srcExtension === 'es6' || this.props.jsPreprocessor.key === 'typescript') {
         rejectWithRegexp.call(this, /index\.constants\.js/);
       }
 
-      if(this.props.htmlPreprocessor.key === 'none') {
+      if(this.props.htmlPreprocessor.key === 'noHtmlPrepro') {
         rejectWithRegexp.call(this, /markups\.js/);
       }
 
-      if(this.props.jsPreprocessor.key !== 'none') {
-        rejectWithRegexp.call(this, /spec\.js/);
+      if(this.props.jsPreprocessor.key !== 'noJsPrepro') {
+        rejectWithRegexp.call(this, /^(?!^e2e\/).*spec\.js/);
       }
   };
 

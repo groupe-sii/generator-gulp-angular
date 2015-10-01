@@ -88,9 +88,5 @@
     },
     "safeContextKeyword": "vm",
     "validateIndentation": 4,
-    "validateJSDoc": {
-        "checkParamNames": true,
-        "requireParamTypes": true
-    },
     "validateQuoteMarks": "'"
 }

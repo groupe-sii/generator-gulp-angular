@@ -1,16 +1,12 @@
 [
   {
-    "type": "input",
-    "name": "appName",
-    "message": "Project name please ?"
-  },{
     "type": "list",
     "name": "angularVersion",
     "message": "Which version of Angular do you want?",
     "choices": [
       {
-        "value": "~1.4.0",
-        "name": "1.4.0 (stable)"
+        "value": "~1.4.2",
+        "name": "1.4.x (stable)"
       },
       {
         "value": "~1.3.16",
@@ -21,7 +17,7 @@
   {
     "type": "checkbox",
     "name": "angularModules",
-    "message": "Which Angular's modules would you want to have? (ngRoute and ngResource will be addressed after)",
+    "message": "What Angular modules would you like to have? (ngRoute and ngResource will be addressed after)",
     "choices": [
       {
         "value": {
@@ -54,25 +50,35 @@
         },
         "name": "angular-sanitize.js (to securely parse and manipulate HTML)",
         "checked": true
+      },
+      {
+        "value": {
+          "key": "messages",
+          "module": "ngMessages"
+        },
+        "name": "angular-messages.js (enhanced support for displaying messages within templates)",
+        "checked": true
+      },
+      {
+        "value": {
+          "key": "aria",
+          "module": "ngAria"
+        },
+        "name": "angular-aria.js (support for common ARIA attributes)",
+        "checked": true
       }
     ]
   },
   {
     "type": "list",
     "name": "jQuery",
-    "message": "Would you need jQuery or perhaps Zepto?",
+    "message": "Do you need jQuery or perhaps Zepto?",
     "choices": [
       {
         "value": {
-          "key": "none"
+          "key": "jqLite"
         },
         "name": "None (Angular will use its own jqLite)"
-      },
-      {
-        "value": {
-          "key": "zepto"
-        },
-        "name": "ZeptoJS 1.1.x (jQuery compatible but very much lighter)"
       },
       {
         "value": {
@@ -85,6 +91,12 @@
           "key": "jquery1"
         },
         "name": "jQuery 1.x (branch still supporting IE6, 7 and 8)"
+      },
+      {
+        "value": {
+          "key": "zepto"
+        },
+        "name": "ZeptoJS 1.1.x (jQuery compatible but very much lighter)"
       }
     ]
   },
@@ -109,7 +121,7 @@
       },
       {
         "value": {
-          "key": "none",
+          "key": "$http",
           "module": null
         },
         "name": "None, $http is enough!"
@@ -119,7 +131,7 @@
   {
     "type": "list",
     "name": "router",
-    "message": "Would you like to use a router ?",
+    "message": "Would you like to use a router?",
     "choices": [
       {
         "value": {
@@ -137,7 +149,14 @@
       },
       {
         "value": {
-          "key": "none",
+          "key": "new-router",
+          "module": "ngNewRouter"
+        },
+        "name": "Angular 2 new router which is compatible with Angular 1 (experimental)"
+      },
+      {
+        "value": {
+          "key": "noRouter",
           "module": null
         },
         "name": "None"
@@ -165,6 +184,13 @@
       },
       {
         "value": {
+          "key": "material-design-lite",
+          "module": null
+        },
+        "name": "Material Design Lite, add a Material Design look and feel to your websites."
+      },
+      {
+        "value": {
           "key": "foundation",
           "module": null
         },
@@ -172,7 +198,7 @@
       },
       {
         "value": {
-          "key": "none",
+          "key": "noUI",
           "module": null
         },
         "name": "None"
@@ -182,7 +208,7 @@
   {
     "type": "list",
     "name": "bootstrapComponents",
-    "message": "How do you want to implements your Bootstrap components?",
+    "message": "How do you want to implement your Bootstrap components?",
     "choices": [
       {
         "value": {
@@ -207,7 +233,7 @@
       },
       {
         "value": {
-          "key": "none",
+          "key": "noBootstrapComponents",
           "module": null
         },
         "name": "No JavaScript, just CSS"
@@ -217,7 +243,7 @@
   {
     "type": "list",
     "name": "foundationComponents",
-    "message": "How do you want to implements your Foundation components?",
+    "message": "How do you want to implement your Foundation components?",
     "choices": [
       {
         "value": {
@@ -235,7 +261,7 @@
       },
       {
         "value": {
-          "key": "none",
+          "key": "noFoundationComponents",
           "module": null
         },
         "name": "No JavaScript, just CSS"
@@ -277,7 +303,7 @@
       },
       {
         "value": {
-          "key": "none",
+          "key": "noCssPrepro",
           "extension": "css"
         },
         "name": "None, only the good old CSS"
@@ -291,7 +317,7 @@
     "choices": [
       {
         "value": {
-          "key": "none",
+          "key": "noJsPrepro",
           "extension": "js",
           "srcExtension": "js"
         },
@@ -334,11 +360,11 @@
   {
     "type": "list",
     "name": "htmlPreprocessor",
-    "message": "Which html template engine would you want?",
+    "message": "Which HTML template engine would you want?",
     "choices": [
       {
         "value": {
-          "key": "none",
+          "key": "noHtmlPrepro",
           "extension": "html"
         },
         "name": "None, I like to code in standard HTML."
@@ -363,6 +389,25 @@
           "extension": "hbs"
         },
         "name": "Handlebars (*.hbs)"
+      }
+    ]
+  },
+  {
+    "type": "checkbox",
+    "name": "otherModules",
+    "message": "Here is some other modules you might be interested in",
+    "choices": [
+      {
+        "value": {
+          "key": "translate",
+          "module": "pascalprecht.translate",
+          "inject": [
+            "$translateProvider",
+            "LANGUAGES"
+          ]
+        },
+        "name": "angular-translate (18n for your Angular app, made easy!)",
+        "checked": false
       }
     ]
   }

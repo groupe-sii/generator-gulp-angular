@@ -5,7 +5,7 @@
     .module('<%- appName %>')
     .directive('acmeNavbar', acmeNavbar);
 
-  /** @ngInject */
+  /* @ngInject */
   function acmeNavbar() {
     var directive = {
       restrict: 'E',
@@ -20,7 +20,7 @@
 
     return directive;
 
-    /** @ngInject */
+    /* @ngInject */
     function NavbarController(moment) {
       var vm = this;
 

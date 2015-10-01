@@ -1,9 +1,9 @@
 angular.module '<%- appName %>'
-  .controller 'MainController', ($timeout, webDevTec, toastr) ->
+  .controller 'MainController', ($timeout, WebDevTecService, toastr) ->
     'ngInject'
     vm = this
     activate = ->
-      getWebDevTec()
+      getWebDevTecService()
       $timeout (->
         vm.classAnimation = 'rubberBand'
         return
@@ -15,8 +15,8 @@ angular.module '<%- appName %>'
       vm.classAnimation = ''
       return
 
-    getWebDevTec = ->
-      vm.awesomeThings = webDevTec.getTec()
+    getWebDevTecService = ->
+      vm.awesomeThings = WebDevTecService.getTec()
       angular.forEach vm.awesomeThings, (awesomeThing) ->
         awesomeThing.rank = Math.random()
         return

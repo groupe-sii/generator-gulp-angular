@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -24,13 +23,13 @@ describe('gulp-angular markups template', function () {
   });
 
   it('should select the right template engine for consolidate', function() {
-    model.props.htmlPreprocessor.key = 'none';
+    model.props.htmlPreprocessor.key = 'noHtmlPrepro';
     var result = markups(model);
     result.should.not.match(/consolidate/);
 
     model.props.htmlPreprocessor.key = 'jade';
     result = markups(model);
-    result.should.match(/\$\.consolidate\('jade', \{ basedir: conf\.paths\.src, doctype: 'html', pretty: '  ' \}/);
+    result.should.match(/\$\.consolidate\('jade', \{ basedir: conf\.paths\.src, doctype: 'html', pretty: ' {2}' \}/);
 
     model.props.htmlPreprocessor.key = 'haml';
     result = markups(model);

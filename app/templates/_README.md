@@ -1,4 +1,4 @@
-###<%- props.appName %> Frontend
+###<%- appName %> Frontend
 
 ## Pre-requis machine
 
@@ -108,4 +108,3 @@ Commande pour trouver quel process écoute sur le port 4444
 ```
 lsof -i :4444
 ```
- 

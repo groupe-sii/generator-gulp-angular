@@ -12,12 +12,11 @@ var gutil = require('gulp-util');
  *  The main paths of your project handle these with care
  */
 exports.paths = {
-  src: '<%- props.paths.src %>',
-  dist: '<%- props.paths.dist %>',
-  tmp: '<%- props.paths.tmp %>',
-  e2e: '<%- props.paths.e2e %>',
-  doc: '<%- props.paths.doc %>',
-  config: 'config'
+    src: '<%- props.paths.src %>',
+    dist: '<%- props.paths.dist %>',
+    tmp: '<%- props.paths.tmp %>',
+    e2e: '<%- props.paths.e2e %>',
+    config: '<%- props.paths.config %>',
 };
 
 /**
@@ -27,19 +26,19 @@ exports.paths = {
  */
 exports.wiredep = {
 <% if(wiredepExclusions.length > 0) { -%>
-  exclude: [<%- wiredepExclusions.join(', ') %>],
+    exclude: [<%- wiredepExclusions.join(', ') %>],
 <% } -%>
-  directory: 'bower_components'
+    directory: 'bower_components'
 };
 
 /**
  *  Common implementation for an error handler of a Gulp plugin
  */
 exports.errorHandler = function(title) {
-  'use strict';
+    'use strict';
 
-  return function(err) {
-    gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
-    this.emit('end');
-  };
+    return function(err) {
+        gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
+        this.emit('end');
+    };
 };

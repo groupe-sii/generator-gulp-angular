@@ -5,12 +5,12 @@
     .module('<%- appName %>')
     .directive('acmeMalarkey', acmeMalarkey);
 
-  /** @ngInject */
+  /* @ngInject */
   function acmeMalarkey(malarkey) {
     var directive = {
       restrict: 'E',
       scope: {
-        extraValues: '=',
+        extraValues: '='
       },
       template: '&nbsp;',
       link: linkFunc,
@@ -47,7 +47,7 @@
       });
     }
 
-    /** @ngInject */
+    /* @ngInject */
     function MalarkeyController($log, githubContributor) {
       var vm = this;
 

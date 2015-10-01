@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinon = require('sinon');
@@ -20,7 +19,8 @@ var pathsConf = {
   'app-path': 'src',
   'dist-path': 'dist',
   'e2e-path': 'e2e',
-  'tmp-path': 'tmp'
+  'tmp-path': 'tmp',
+  'config-path': 'config'
 };
 
 describe('gulp-angular generator paths script', function () {

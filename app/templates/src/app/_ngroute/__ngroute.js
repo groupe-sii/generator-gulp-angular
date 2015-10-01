@@ -1,20 +1,20 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('<%- appName %>')
-    .config(routeConfig);
+    angular
+        .module('<%- appName %>')
+        .config(config);
 
-  function routeConfig($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  }
-
+    /* @ngInject */
+    function config($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'app/main/main.html',
+                controller: 'MainController',
+                controllerAs: 'main'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    }
 })();

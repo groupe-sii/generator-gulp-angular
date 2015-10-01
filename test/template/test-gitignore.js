@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -32,7 +31,7 @@ describe('gulp-angular gitignore template', function () {
   });
 
   it('should ignore typescript files when typescript chosen', function() {
-    model.props.jsPreprocessor.key = 'none';
+    model.props.jsPreprocessor.key = 'noJsPrepro';
     var result = gitignore(model);
     result.should.not.match(/typings/);
 

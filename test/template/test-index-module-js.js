@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -35,7 +34,7 @@ describe('gulp-angular index js template', function () {
   it('should name the module as the app name and add modules dependencies in the module declaration', function() {
     model.appName = 'testAppName';
     model.modulesDependencies = 'test value';
-    var testJs = /angular\n    \.module\('testAppName', \[test value\]\)/;
+    var testJs = /angular\n {4}\.module\('testAppName', \[test value\]\)/;
     var testEs6 = /angular\.module\('testAppName', \[test value\]\)/;
     var testTs = /angular\.module\('testAppName', \[test value\]\)/;
     var testCoffee = /angular\.module 'testAppName', \[test value\]/;
@@ -49,18 +48,32 @@ describe('gulp-angular index js template', function () {
     result.should.match(testTs);
   });
 
-  it('should add the router config when necessary', function() {
+  it('should not add the router config for no router', function() {
+    model.props.router.key = 'noRouter';
+    var result = indexEs6(model);
+    result.should.not.match(/\.config\(routerConfig\)/);
+    result.should.not.match(/RouterController/);
+    result = indexTs(model);
+    result.should.not.match(/\.config\(routerConfig\)/);
+    result.should.not.match(/RouterController/);
+  });
+
+  it('should add the router config when a router is chosen', function() {
     model.props.router.key = 'not-none';
     var result = indexEs6(model);
-    result.should.match(/.config\(routerConfig\)/);
+    result.should.match(/\.config\(routerConfig\)/);
+    result.should.not.match(/RouterController/);
     result = indexTs(model);
-    result.should.match(/.config\(routerConfig\)/);
+    result.should.match(/\.config\(routerConfig\)/);
+    result.should.not.match(/RouterController/);
+  });
 
-    model.props.router.key = 'none';
-    result = indexEs6(model);
-    result.should.not.match(/.config\(routerConfig\)/);
+  it('should add the router controller for the angular new router', function() {
+    model.props.router.key = 'new-router';
+    var result = indexEs6(model);
+    result.should.match(/\.controller\('RouterController', RouterController\)/);
     result = indexTs(model);
-    result.should.not.match(/.config\(routerConfig\)/);
+    result.should.match(/\.controller\('RouterController', RouterController\)/);
   });
 
 });

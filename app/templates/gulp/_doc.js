@@ -33,7 +33,7 @@ gulp.task('ng-doc', function() {
         },
         accueil: {
             glob: [conf.paths.src + '/doc/*.ngdoc'],
-            title: '<%- props.appName %> Frontend Documentation'
+            title: '<%- appName %> Frontend Documentation'
         }
     }).pipe($.ngdocs.process(options)).pipe(gulp.dest(conf.paths.doc));
 });

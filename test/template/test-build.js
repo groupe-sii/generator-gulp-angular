@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -24,7 +23,7 @@ describe('gulp-angular build template', function () {
   });
 
   it('should add markups as dependency task if there is an htlm preprocessor', function() {
-    model.props.htmlPreprocessor.key = 'none';
+    model.props.htmlPreprocessor.key = 'noHtmlPrepro';
     var result = build(model);
     result.should.match(/gulp\.task\('partials', function/);
 
@@ -40,8 +39,8 @@ describe('gulp-angular build template', function () {
   });
 
   it('should replace bootstrap font paths', function() {
-    model.computedPaths.appToBower = 'appToBower'
-    model.props.ui.key = 'none';
+    model.computedPaths.appToBower = 'appToBower';
+    model.props.ui.key = 'noUI';
     model.props.cssPreprocessor.extension = 'css';
     var result = build(model);
     result.should.not.match(/\$\.replace/);
@@ -50,7 +49,7 @@ describe('gulp-angular build template', function () {
     model.props.ui.key = 'bootstrap';
     model.props.cssPreprocessor.extension = 'scss';
     result = build(model);
-    result.should.match(/\$\.replace\('\.\.\/appToBower\/bower_components\/bootstrap-sass-official/);
+    result.should.match(/\$\.replace\('\.\.\/appToBower\/bower_components\/bootstrap-sass/);
 
     model.props.cssPreprocessor.extension = 'less';
     result = build(model);
@@ -60,6 +59,15 @@ describe('gulp-angular build template', function () {
     result = build(model);
     result.should.match(/\$\.replace\('\.\.\/appToBower\/bower_components\/bootstrap-stylus\//);
     result.should.match(/mainBowerFiles\(\).concat\('bower_components\/bootstrap-stylus\/fonts\/\*'\)/);
+  });
+
+  it('should replace material-design-iconfont font paths', function() {
+    model.computedPaths.appToBower = 'appToBower';
+    model.props.ui.key = 'material-design-lite';
+    var result = build(model);
+    result = build(model);
+    result.should.match(/\$\.replace\('\.\.\/appToBower\/bower_components\/material-design-iconfont\/iconfont\//);
+    result.should.match(/mainBowerFiles\(\).concat\('bower_components\/material-design-iconfont\/iconfont\/\*'\)/);
   });
 
   it('should use image min if selected', function() {
@@ -72,14 +80,10 @@ describe('gulp-angular build template', function () {
     result.should.match(/\$\.imagemin/);
   });
 
-  it('should add tsd:purge in clean dependencies for typescript', function() {
-    model.props.jsPreprocessor.key = 'none';
-    var result = build(model);
-    result.should.not.match(/tsd:purge/);
-
+  it('should specify directory paths in clean task for typescript', function() {
     model.props.jsPreprocessor.key = 'typescript';
-    result = build(model);
-    result.should.match(/'clean', \['tsd:purge'\],/);
+    var result = build(model);
+    result.should.match(/conf.paths.tmp, '\/partials'/);
+    result.should.match(/conf.paths.tmp, '\/serve'/);
   });
-
 });

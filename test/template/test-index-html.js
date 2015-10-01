@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -31,7 +30,7 @@ describe('gulp-angular index js template', function () {
   });
 
   it('should insert the vendor build block depending of data', function() {
-    model.props.cssPreprocessor.key = 'none';
+    model.props.cssPreprocessor.key = 'noCssPrepro';
     model.props.paths.src = 'src';
     model.props.paths.tmp = 'tmp';
     var result = indexHtml(model);
@@ -43,6 +42,17 @@ describe('gulp-angular index js template', function () {
     model.props.paths.src = 'src';
     model.includeModernizr = false;
     var result = indexHtml(model);
+    result.should.not.match(/<!-- build:js\(src\) scripts\/modernizr.js -->/);
+    result.should.not.match(/<html class="no-js"/);
+
+    model.includeModernizr = true;
+    result = indexHtml(model);
+    result.should.match(/<!-- build:js\(src\) scripts\/modernizr.js -->/);
+    result.should.match(/<html class="no-js"/);
+
+    model.props.jsPreprocessor.key = 'typescript';
+    model.includeModernizr = false;
+    result = indexHtml(model);
     result.should.not.match(/<!-- build:js\(src\) scripts\/modernizr.js -->/);
     result.should.not.match(/<html class="no-js"/);
 

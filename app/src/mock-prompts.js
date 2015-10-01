@@ -14,91 +14,94 @@ var _ = require('lodash');
 var prompts = require('../prompts.json');
 
 var questions = [
-  'angularVersion',
-  'angularModules',
-  'jQuery',
-  'resource',
-  'router',
-  'ui',
-  'bootstrapComponents',
-  'foundationComponents',
-  'cssPreprocessor',
-  'jsPreprocessor',
-  'htmlPreprocessor'
+    'angularVersion',
+    'angularModules',
+    'jQuery',
+    'resource',
+    'router',
+    'ui',
+    'bootstrapComponents',
+    'foundationComponents',
+    'cssPreprocessor',
+    'jsPreprocessor',
+    'htmlPreprocessor',
+    'otherModules'
 ];
 
 var model = {};
 
 questions.forEach(function(question) {
-  model[question] = {
-    choices: _.findWhere(prompts, {name: question}).choices,
-    values: {}
-  };
+    model[question] = {
+        choices: _.findWhere(prompts, {
+            name: question
+        }).choices,
+        values: {}
+    };
 });
 
 model.angularVersion.choices.forEach(function(choice) {
-  var title = choice.name.substring(0, 3);
-  model.angularVersion.values[title] = choice.value;
+    var title = choice.name.substring(0, 3);
+    model.angularVersion.values[title] = choice.value;
 });
 
 model.angularModules.choices.forEach(function(choice) {
-  model.angularModules.values[choice.value.name] = choice.value;
+    model.angularModules.values[choice.value.name] = choice.value;
 });
 
 model.jQuery.choices.forEach(function(choice) {
-  var title = choice.name.substring(0, choice.name.indexOf(' ('));
-  var xIndex = choice.name.indexOf('.x');
-  if(xIndex > 0) {
-    title = title.substring(0, xIndex);
-  }
-  model.jQuery.values[title.toLowerCase()] = choice.value;
+    model.jQuery.values[choice.value.key] = choice.value;
 });
 
 model.resource.choices.forEach(function(choice) {
-  model.resource.values[choice.value.key] = choice.value;
+    model.resource.values[choice.value.key] = choice.value;
 });
 
 model.router.choices.forEach(function(choice) {
-  model.router.values[choice.value.key] = choice.value;
+    model.router.values[choice.value.key] = choice.value;
 });
 
 model.ui.choices.forEach(function(choice) {
-  model.ui.values[choice.value.key] = choice.value;
+    model.ui.values[choice.value.key] = choice.value;
 });
 
 model.bootstrapComponents.choices.forEach(function(choice) {
-  model.bootstrapComponents.values[choice.value.key] = choice.value;
+    model.bootstrapComponents.values[choice.value.key] = choice.value;
 });
 
 model.foundationComponents.choices.forEach(function(choice) {
-  model.foundationComponents.values[choice.value.key] = choice.value;
+    model.foundationComponents.values[choice.value.key] = choice.value;
 });
 
 model.cssPreprocessor.choices.forEach(function(choice) {
-  model.cssPreprocessor.values[choice.value.key] = choice.value;
+    model.cssPreprocessor.values[choice.value.key] = choice.value;
 });
 
 model.jsPreprocessor.choices.forEach(function(choice) {
-  model.jsPreprocessor.values[choice.value.key] = choice.value;
+    model.jsPreprocessor.values[choice.value.key] = choice.value;
 });
 
 model.htmlPreprocessor.choices.forEach(function(choice) {
-  model.htmlPreprocessor.values[choice.value.key] = choice.value;
+    model.htmlPreprocessor.values[choice.value.key] = choice.value;
+});
+
+model.otherModules.choices.forEach(function(choice) {
+    model.otherModules.values[choice.value.key] = choice.value;
 });
 
 module.exports = {
-  prompts: model,
-  defaults: {
-    angularVersion: model.angularVersion.values['1.4'],
-    angularModules: _.pluck(model.angularModules.choices, 'value'),
-    jQuery: model.jQuery.values['jquery 2'],
-    resource: model.resource.values['angular-resource'],
-    router: model.router.values['ui-router'],
-    ui: model.ui.values.bootstrap,
-    bootstrapComponents: model.bootstrapComponents.values['ui-bootstrap'],
-    foundationComponents: model.foundationComponents.values.none,
-    cssPreprocessor: model.cssPreprocessor.values['node-sass'],
-    jsPreprocessor: model.jsPreprocessor.values.none,
-    htmlPreprocessor: model.htmlPreprocessor.values.none
-  }
+    prompts: model,
+    defaults: {
+        angularVersion: model.angularVersion.values['1.4'],
+        angularModules: _.pluck(model.angularModules.choices, 'value'),
+        jQuery: model.jQuery.values['jquery2'],
+        resource: model.resource.values['angular-resource'],
+        router: model.router.values['ui-router'],
+        ui: model.ui.values.bootstrap,
+        bootstrapComponents: model.bootstrapComponents.values['ui-bootstrap'],
+        foundationComponents: model.foundationComponents.values.noFoundationComponents,
+        cssPreprocessor: model.cssPreprocessor.values['node-sass'],
+        jsPreprocessor: model.jsPreprocessor.values.noJsPrepro,
+        htmlPreprocessor: model.htmlPreprocessor.values.noHtmlPrepro,
+        otherModules: _.pluck(model.otherModules.choices, 'value')
+    }
 };

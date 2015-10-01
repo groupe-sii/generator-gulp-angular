@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -34,9 +33,9 @@ describe('gulp-angular generator techs script', function () {
       jQuery: { name: 'tech-name-1' },
       ui: { key: 'tech-name-2' },
       bootstrapComponents: { key: null },
-      foundationComponents: { key: 'none' },
-      cssPreprocessor: { extension: 'default' },
-      jsPreprocessor: { extension: 'css' },
+      foundationComponents: { key: 'noFoundationComponents' },
+      cssPreprocessor: { extension: 'default' },
+      jsPreprocessor: { extension: 'css' },
       htmlPreprocessor: { extension: 'official' }
     };
     generator.files = [];

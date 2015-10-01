@@ -1,16 +1,41 @@
-'use strict';
+(function() {
+    'use strict';
 
-/**
- * @ngdoc controller
- * @name  <%- props.appName %>.controller:MainController
- * @description
- *
- * Main Controller
- */
+    angular
+        .module('<%- appName %>')
+        .controller('MainController', MainController);
 
-angular
-    .module('<%- props.appName %>')
-    .controller('MainController', function() {
+    /* @ngInject */
+    function MainController($timeout, WebDevTecService, toastr) {
         var vm = this;
-        vm.title = '<%- props.appName %>';
-    });
+
+        vm.awesomeThings = [];
+        vm.classAnimation = '';
+        vm.creationDate = <%- new Date().getTime() %>;
+        vm.showToastr = showToastr;
+
+        activate();
+
+        ////////////
+
+        function activate() {
+            getWebDevTec();
+            $timeout(function() {
+                vm.classAnimation = 'rubberBand';
+            }, 4000);
+        }
+
+        function showToastr() {
+            toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
+            vm.classAnimation = '';
+        }
+
+        function getWebDevTec() {
+            vm.awesomeThings = WebDevTecService.getTec();
+
+            angular.forEach(vm.awesomeThings, function(awesomeThing) {
+                awesomeThing.rank = Math.random();
+            });
+        }
+    }
+})();

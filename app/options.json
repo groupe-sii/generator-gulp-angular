@@ -21,18 +21,18 @@
     "defaults": "e2e"
   },
   {
-    "name": "doc-path",
-    "type": "String",
-    "required": false,
-    "desc": "doc folder, relative to cwd",
-    "defaults": "doc"
-  },
-  {
     "name": "tmp-path",
     "type": "String",
     "required": false,
     "desc": "temp build folder serving preprocessed files, relative to cwd",
     "defaults": ".tmp"
+  },
+  {
+    "name": "config-path",
+    "type": "String",
+    "required": false,
+    "desc": "Configurations files folder",
+    "defaults": "config"
   },
   {
     "name": "skip-install",

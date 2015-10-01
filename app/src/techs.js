@@ -23,7 +23,7 @@ module.exports = function(GulpAngularGenerator) {
     ])
       .filter(_.isString)
       .filter(function(tech) {
-        return tech !== 'default' && tech !== 'css' && tech !== 'official' && tech !== 'none';
+        return listTechs[tech] !== undefined;
       });
 
     var techsContent = _.map(usedTechs, function(value) {
@@ -37,9 +37,13 @@ module.exports = function(GulpAngularGenerator) {
       .replace(/\n/g, '\n    ');
 
     usedTechs.forEach(function(value) {
-      var path ='src/assets/images/' + listTechs[value].logo;
+      var path = 'src/assets/images/' + listTechs[value].logo;
 
-
+      this.files.push({
+        src: path,
+        dest: path,
+        template: false
+      });
     }, this);
   };
 

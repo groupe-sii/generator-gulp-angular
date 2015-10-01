@@ -16,23 +16,37 @@ function logChoice(prompt, prop) {
 module.exports = function(GulpAngularGenerator) {
 
   /**
+   * Check Insight config
+   */
+  GulpAngularGenerator.prototype.checkInsight = function checkInsight() {
+
+    if (this.insight.optOut === undefined) {
+      var done = this.async();
+
+      this.insight.track('downloaded');
+
+      this.insight.askPermission(null, done);
+    }
+  };
+
+  /**
    * Check if the default option is set, if it is, use defaults props and log them
    */
   GulpAngularGenerator.prototype.defaultOption = function defaultOption() {
-    if (this.options['default']) {
+    if (this.options.default) {
       this.props = _.merge(this.props, mockPrompts.defaults);
 
       this.log('__________________________');
       this.log('You use ' + chalk.green('--default') + ' option:');
 
-      _.forEach(this.props, function(prop, key) {
+      _.forEach(this.props, function(propOrProps, key) {
         var prompt = _.find(prompts, {name: key});
-        if(_.isArray(prop)) {
-          prop.forEach(function(prop) {
+        if(_.isArray(propOrProps)) {
+          propOrProps.forEach(function(prop) {
             logChoice.call(this, prompt, prop);
           }, this);
         } else {
-          logChoice.call(this, prompt, prop);
+          logChoice.call(this, prompt, propOrProps);
         }
       }, this);
 
@@ -46,12 +60,12 @@ module.exports = function(GulpAngularGenerator) {
   GulpAngularGenerator.prototype.checkYoRc = function checkYoRc() {
     var done = this.async();
 
-    if(this.config.get('props') && !this.options['default']) {
+    if(this.config.get('props') && !this.options.default) {
       this.prompt([{
         type: 'confirm',
         name: 'skipConfig',
         message: 'Existing ' + chalk.green('.yo-rc') + ' configuration found, would you like to use it?',
-        default: true,
+        default: true
       }], function (answers) {
         this.skipConfig = answers.skipConfig;
 
@@ -73,7 +87,7 @@ module.exports = function(GulpAngularGenerator) {
    * Complete responses with null answers for questions not asked
    */
   GulpAngularGenerator.prototype.askQuestions = function askQuestions() {
-    if (this.skipConfig || this.options['default']) {
+    if (this.skipConfig || this.options.default) {
       return;
     }
 
@@ -121,7 +135,7 @@ module.exports = function(GulpAngularGenerator) {
     this.qrCode = false;
 
     if (this.skipConfig || !this.options.advanced) {
-      return ;
+      return;
     }
 
     var done = this.async();
@@ -135,6 +149,19 @@ module.exports = function(GulpAngularGenerator) {
 
       done();
     }.bind(this));
+  };
+
+  /**
+   * Send anonymously report usage statistics by Insight
+   */
+  GulpAngularGenerator.prototype.sendInsight = function sendInsight() {
+    var keyValues = [];
+    _.forEach(this.props, function(aProp) {
+      if (aProp.key) {
+        keyValues.push(aProp.key);
+      }
+    });
+    this.insight.track.apply(this.insight, keyValues);
   };
 
 };

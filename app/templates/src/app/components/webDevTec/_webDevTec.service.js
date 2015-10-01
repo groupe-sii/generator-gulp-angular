@@ -1,27 +1,19 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  /**
- * @ngdoc service
- * @name  testGeneratorAngularSii.service:webDevTec
- * @description
- *
- * Gestion des webDevTec
- */
+    angular
+        .module('<%- appName %>')
+        .service('WebDevTecService', WebDevTecService);
 
-  angular
-      .module('<%- appName %>')
-      .service('webDevTec', webDevTec);
+    /* @ngInject */
+    function WebDevTecService() {
+        var data = <%- technologies %>;
 
-  /** @ngInject */
-  function webDevTec() {
-    var data = <%- technologies %>;
+        this.getTec = getTec;
 
-    this.getTec = getTec;
-
-    function getTec() {
-      return data;
+        function getTec() {
+            return data;
+        }
     }
-  }
 
 })();

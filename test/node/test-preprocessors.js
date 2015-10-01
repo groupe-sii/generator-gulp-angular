@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -24,7 +23,6 @@ describe('gulp-angular generator preprocessors script', function () {
       { src: 'gulp/styles.js' },
       { src: 'gulp/scripts.js' },
       { src: 'gulp/markups.js' },
-      { src: 'gulp/tsd.js' },
       { src: 'index.constants.js' },
       { src: 'tsd.json' }
     ];
@@ -51,7 +49,7 @@ describe('gulp-angular generator preprocessors script', function () {
     it('should be inject if no es6 or html prepro', function() {
       generator.props = {
         jsPreprocessor: { srcExtension: 'notes6' },
-        htmlPreprocessor: { key: 'none' }
+        htmlPreprocessor: { key: 'noHtmlPrepro' }
       };
       generator.computeWatchTaskDeps();
       generator.watchTaskDeps.length.should.be.equal(1);
@@ -74,9 +72,9 @@ describe('gulp-angular generator preprocessors script', function () {
   describe('reject files depending on preprocessors choices', function() {
     it('should reject preprocessors gulp files if no preprocessors', function() {
       generator.props = {
-        cssPreprocessor: { key: 'none' },
-        jsPreprocessor: { key: 'none' },
-        htmlPreprocessor: { key: 'none' }
+        cssPreprocessor: { key: 'noCssPrepro' },
+        jsPreprocessor: { key: 'noJsPrepro' },
+        htmlPreprocessor: { key: 'noHtmlPrepro' }
       };
       generator.rejectFiles();
       generator.files.length.should.be.equal(2);
@@ -89,7 +87,7 @@ describe('gulp-angular generator preprocessors script', function () {
         htmlPreprocessor: { key: 'not none' }
       };
       generator.rejectFiles();
-      generator.files.length.should.be.equal(5);
+      generator.files.length.should.be.equal(4);
     });
   });
 
@@ -99,7 +97,7 @@ describe('gulp-angular generator preprocessors script', function () {
         jsPreprocessor: { key: 'coffee' }
       };
       generator.lintCopies();
-      generator.files[6].src.should.match(/coffeelint/);
+      generator.files[5].src.should.match(/coffeelint/);
     });
 
     it('should add tslint for typescript preprocessor', function() {
@@ -107,7 +105,7 @@ describe('gulp-angular generator preprocessors script', function () {
         jsPreprocessor: { key: 'typescript' }
       };
       generator.lintCopies();
-      generator.files[6].src.should.match(/tslint/);
+      generator.files[5].src.should.match(/tslint/);
     });
   });
 
@@ -115,22 +113,22 @@ describe('gulp-angular generator preprocessors script', function () {
     it('should not add file if there is no travis env', function() {
       process.env.TRAVIS = 'false';
       generator.travisCopies();
-      generator.files.length.should.be.equal(6);
+      generator.files.length.should.be.equal(5);
     });
 
     it('should not add file if travis but no typescript', function() {
       process.env.TRAVIS = 'true';
       generator.props = { jsPreprocessor: { key: 'not typescript' } };
       generator.travisCopies();
-      generator.files.length.should.be.equal(6);
+      generator.files.length.should.be.equal(5);
     });
 
     it('should add file if travis and typescript', function() {
       process.env.TRAVIS = 'true';
       generator.props = { jsPreprocessor: { key: 'typescript' } };
       generator.travisCopies();
-      generator.files.length.should.be.equal(7);
-      generator.files[6].src.should.match(/tsdrc/);
+      generator.files.length.should.be.equal(6);
+      generator.files[5].src.should.match(/tsdrc/);
     });
   });
 

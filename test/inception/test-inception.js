@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var inception = require('../inception');
 
@@ -40,12 +39,12 @@ describe('gulp-angular generator inception tests', function () {
     before(function() {
       return inception.prepare({}, {
         angularVersion: prompts.angularVersion.values['1.3'],
-        jQuery: prompts.jQuery.values['jquery 2'],
+        jQuery: prompts.jQuery.values['jquery2'],
         resource: prompts.resource.values.restangular,
         router: prompts.router.values['ui-router'],
         ui: prompts.ui.values.foundation,
         foundationComponents: prompts.foundationComponents.values['angular-foundation'],
-        cssPreprocessor: prompts.cssPreprocessor.values.none,
+        cssPreprocessor: prompts.cssPreprocessor.values.noCssPrepro,
         jsPreprocessor: prompts.jsPreprocessor.values.coffee,
         htmlPreprocessor: prompts.htmlPreprocessor.values.jade
       }).then(function(generator) {
@@ -70,9 +69,9 @@ describe('gulp-angular generator inception tests', function () {
   describe('with [ZeptoJS 1.1.x, $http, Bootstrap, LESS, ES6 with Babel, hamljs]', function () {
     before(function() {
       return inception.prepare({}, {
-        jQuery: prompts.jQuery.values['zeptojs 1.1'],
-        resource: prompts.resource.values.none,
-        router: prompts.router.values.none,
+        jQuery: prompts.jQuery.values['zepto'],
+        resource: prompts.resource.values['$http'],
+        router: prompts.router.values.noRouter,
         ui: prompts.ui.values.bootstrap,
         bootstrapComponents: prompts.bootstrapComponents.values['ui-bootstrap'],
         cssPreprocessor: prompts.cssPreprocessor.values.less,
@@ -97,10 +96,11 @@ describe('gulp-angular generator inception tests', function () {
     });
   });
 
-  describe('with [jQuery 1, $http, ngMaterial, Stylus, TypeScript, handlebars]', function () {
+  describe('with [jQuery 1, $http, new router, ngMaterial, Stylus, TypeScript, handlebars]', function () {
     before(function() {
       return inception.prepare({}, {
-        jQuery: prompts.jQuery.values['jquery 1'],
+        jQuery: prompts.jQuery.values['jquery1'],
+        router: prompts.router.values['new-router'],
         ui: prompts.ui.values['angular-material'],
         cssPreprocessor: prompts.cssPreprocessor.values.stylus,
         jsPreprocessor: prompts.jsPreprocessor.values.typescript,
@@ -127,8 +127,6 @@ describe('gulp-angular generator inception tests', function () {
   describe('with [$http, Bootstrap, AngularStrap, ruby-sass, Traceur]', function () {
     before(function() {
       return inception.prepare({}, {
-        // TODO replace Toastr by similar lib without jQuery dep (angular-toastr)
-        // jQuery: prompts.jQuery.values['none'],
         ui: prompts.ui.values.bootstrap,
         bootstrapComponents: prompts.bootstrapComponents.values['angular-strap'],
         cssPreprocessor: prompts.cssPreprocessor.values['ruby-sass'],
@@ -152,14 +150,17 @@ describe('gulp-angular generator inception tests', function () {
     });
   });
 
-  describe('with [src:src/angular/app e2e:tests/e2e dist:target/build/folder tmp:.tmp/folder] and default prompts', function () {
+  describe('with [AngularJS 1.4, jqLite, ngResource, new router, MDL, NodeSass, Javascript, HTML]', function () {
     before(function() {
-      return inception.prepare({
-        'app-path': 'src/angular/app',
-        'dist-path': 'target/build/folder',
-        'e2e-path': 'tests/e2e',
-        'tmp-path': '.tmp/folder'
-      }, {}).then(function(generator) {
+      return inception.prepare({}, {
+        angularVersion: prompts.angularVersion.values['1.4'],
+        jQuery: prompts.jQuery.values.jqLite,
+        router: prompts.router.values['new-router'],
+        ui: prompts.ui.values['material-design-lite'],
+        cssPreprocessor: prompts.cssPreprocessor.values['node-sass'],
+        jsPreprocessor: prompts.jsPreprocessor.values.noJsPrepro,
+        htmlPreprocessor: prompts.htmlPreprocessor.values.noHtmlPrepro
+      }).then(function(generator) {
         gulpAngular = generator;
       });
     });
@@ -178,4 +179,31 @@ describe('gulp-angular generator inception tests', function () {
     });
   });
 
+  describe('with [src:src/angular/app e2e:tests/e2e dist:target/build/folder tmp:.tmp/folder config:config/folder] and default prompts', function () {
+    before(function() {
+      return inception.prepare({
+        'app-path': 'src/angular/app',
+        'dist-path': 'target/build/folder',
+        'e2e-path': 'tests/e2e',
+        'tmp-path': '.tmp/folder',
+        'tmp-path': '.tmp/folder',
+        'config-path': 'config/folder'
+      }, {}).then(function(generator) {
+        gulpAngular = generator;
+      });
+    });
+
+    it('should pass build', function () {
+      return inception.run(gulpAngular, 'build').should.be.fulfilled;
+    });
+    it('should pass test', function () {
+      return inception.run(gulpAngular, 'test').should.be.fulfilled;
+    });
+    it('should pass protractor', function () {
+      return inception.run(gulpAngular, 'protractor').should.be.fulfilled;
+    });
+    it('should pass protractor:dist', function () {
+      return inception.run(gulpAngular, 'protractor:dist').should.be.fulfilled;
+    });
+  });
 });

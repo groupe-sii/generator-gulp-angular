@@ -1,5 +1,4 @@
 'use strict';
-/* jshint expr:true */
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
@@ -30,7 +29,7 @@ describe('gulp-angular watch template', function () {
   });
 
   it('should watch the css preprocessor extension files and launch the styles task', function() {
-    model.props.cssPreprocessor.key = 'none';
+    model.props.cssPreprocessor.key = 'noCssPrepro';
     model.props.cssPreprocessor.extension = 'css';
     var result = watch(model);
     result.should.match(/gulp\.watch\(.*\*\.css'/);
@@ -44,7 +43,7 @@ describe('gulp-angular watch template', function () {
   });
 
   it('should watch the js preprocessor extension files', function() {
-    model.props.jsPreprocessor.key = 'none';
+    model.props.jsPreprocessor.key = 'noJsPrepro';
     model.props.jsPreprocessor.extension = 'js';
     model.props.jsPreprocessor.srcExtension = 'notes6';
     var result = watch(model);
@@ -67,7 +66,7 @@ describe('gulp-angular watch template', function () {
   });
 
   it('should watch the html preprocessor extension files', function() {
-    model.props.htmlPreprocessor.key = 'none';
+    model.props.htmlPreprocessor.key = 'noHtmlPrepro';
     model.props.htmlPreprocessor.extension = 'html';
     var result = watch(model);
     result.should.not.match(/gulp\.watch.*\['markups'\]/);

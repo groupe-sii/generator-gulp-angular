@@ -3,7 +3,6 @@ bower_components/
 coverage/
 .sass-cache/
 .idea/
-tools/reports/plato
 <%- props.paths.tmp %>/
 <%- props.paths.dist %>/
 <% if (props.jsPreprocessor.key === 'typescript') { %>

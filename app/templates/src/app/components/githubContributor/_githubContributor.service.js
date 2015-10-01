@@ -5,7 +5,7 @@
     .module('<%- appName %>')
     .factory('githubContributor', githubContributor);
 
-  /** @ngInject */
+  /* @ngInject */
   function githubContributor($log, $http) {
     var apiHost = 'https://api.github.com/repos/Swiip/generator-gulp-angular';
 

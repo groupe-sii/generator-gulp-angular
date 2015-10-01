@@ -1,5 +1,5 @@
-class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+export class MainController {
+  constructor ($timeout, WebDevTecService, toastr) {
     'ngInject';
 
     this.awesomeThings = [];
@@ -7,18 +7,18 @@ class MainController {
     this.creationDate = <%- new Date().getTime() %>;
     this.toastr = toastr;
 
-    this.activate($timeout, webDevTec);
+    this.activate($timeout, WebDevTecService);
   }
 
-  activate($timeout, webDevTec) {
-    this.getWebDevTec(webDevTec);
+  activate($timeout, WebDevTecService) {
+    this.getWebDevTecService(WebDevTecService);
     $timeout(() => {
       this.classAnimation = 'rubberBand';
     }, 4000);
   }
 
-  getWebDevTec(webDevTec) {
-    this.awesomeThings = webDevTec.getTec();
+  getWebDevTecService(WebDevTecService) {
+    this.awesomeThings = WebDevTecService.getTec();
 
     angular.forEach(this.awesomeThings, (awesomeThing) => {
       awesomeThing.rank = Math.random();
@@ -30,5 +30,3 @@ class MainController {
     this.classAnimation = '';
   }
 }
-
-export default MainController;
