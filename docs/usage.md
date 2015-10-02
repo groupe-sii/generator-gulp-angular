@@ -9,7 +9,7 @@ npm install -g yo gulp bower
 
 Install `generator-gulp-angular`:
 ```
-npm install -g generator-gulp-angular
+npm install -g https://github.com/groupe-sii/generator-gulp-angular
 ```
 
 Make a new directory, and `cd` into it:
@@ -27,7 +27,6 @@ yo gulp-angular [app-name]
 
 * `--app-path='src'` customize Angular's app folder, relative to cwd, default is `src`
 * `--dist-path='dist'` customize build target folder, relative to cwd, default is `dist`
-* `--e2e-path='e2e'` customize e2e test specs folder, relative to cwd, default is `e2e`
 * `--tmp-path='.tmp'` customize pre-processing temp folder, relative to cwd, default is `.tmp`
 * `--config-path='config'` customize configuration files folder, default is `config`
 * `--skip-install` do not run `bower install` and `npm install` after generating the app, default is `false` (not skip)
@@ -37,7 +36,7 @@ yo gulp-angular [app-name]
 * `--advanced` prompt for advanced additional features, default is `false`
 
 
-Paths configuration are stored in `gulpfile.js`. Change `options.(src|dist|tmp|e2e)` in `gulpfile.js` if you want to config paths after the app is generated.
+Paths configuration are stored in `gulpfile.js`. Change `options.(src|dist|tmp|config)` in `gulpfile.js` if you want to config paths after the app is generated.
 
 **Warning**: The paths are also written in the `index.html` for the build with useref. If you want to change these paths, you also have to change the paths there in order to have the build task working.
 
@@ -55,12 +54,16 @@ More information on the gulp tasks in the [User Guide](user-guide.md).
 
 ## Directory structure
 
-[Best Practice Recommendations for Angular App Structure](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub)
+[Best Practice Recommendations for Angular App Structure](https://github.com/johnpapa/angular-styleguide)
 
 The root directory generated with default paths configuration for application with name `gulpAngular`:
 <pre>
 ├──  bower_components/
-├──  e2e/
+├──  config/
+|   |──  development/
+|   |──  production/
+│   └──  project.config.json
+|
 ├──  gulp/
 ├──  nodes_modules/
 │
@@ -75,7 +78,7 @@ The root directory generated with default paths configuration for application wi
 │   │   │   │   └──  malarkey.(scss|styl|less|css)
 │   │   │   │
 │   │   │   └──  navbar/
-│   │   │   │   ├──  navbar.directive.(js|ts|coffee)
+│   │   │   │   ├──  navbar.directive.js
 │   │   │   │   ├──  navbar.html
 │   │   │   │   └──  navbar.(scss|styl|less|css)
 │   │   │   │
@@ -83,15 +86,11 @@ The root directory generated with default paths configuration for application wi
 │   │   │       └──  webDevTec.service.js
 │   │   │
 │   │   ├──  main/
-│   │   │   ├──  main.controller.(js|ts|coffee)
-│   │   │   ├──  main.controller.spec.js
+│   │   │   ├──  main.controller.js
 │   │   │   └──  main.html
 │   │   │
-│   │   └──  index.config.(js|ts|coffee)
-│   │   └──  index.constants.(js|ts|coffee)
-│   │   └──  index.module.(js|ts|coffee)
-│   │   └──  index.route.(js|ts|coffee)
-│   │   └──  index.run.(js|ts|coffee)
+│   │   └──  index.js
+│   │   └──  index.route.js
 │   │   └──  index.(scss|styl|less|css)
 |   |
 │   ├──  assets/
@@ -101,13 +100,17 @@ The root directory generated with default paths configuration for application wi
 │
 ├──  .bowerrc
 ├──  .editorconfig
-├──  .gitignore
 ├──  .eslintrc
+├──  .gitignore
+├──  .htmlhintrc
+├──  .jscsrc
+├──  .jshintrc
+├──  .scsslintrc.yml
+├──  .yo-rc.json
 ├──  bower.json
 ├──  gulpfile.js
 ├──  karma.conf.js
-├──  package.json
-└──  protractor.conf.js
+└──  package.json
 </pre>
 
 There is none at the generation but you can add `.jade`, `.haml` or `.hbs` (dependent of your HTML pre-processor choice) anywhere in the `src` folder and it will be compiled automatically. **Warning**, the first file of a type in a folder is often missed by the Gulp watch, try to relaunch Gulp if it happens.
@@ -123,11 +126,8 @@ There is none at the generation but you can add `.jade`, `.haml` or `.hbs` (depe
 * *eslint* : The pluggable linting utility for JavaScript
 * *imagemin* : all your images will be optimized at build
 * *Unit test (karma)* : out of the box unit test configuration with karma
-* *e2e test (protractor)* : out of the box e2e test configuration with protractor
 * *browser sync* : full-featured development web server with livereload and devices sync
 * *angular-templatecache* : all HTML partials will be converted to JS to be bundled in the application
-* **TODO** lazy : don't process files which haven't changed when possible
-
 
 ## Questions the generator will ask
 * *jQuery*: jQuery 1.x, 2.x, Zepto, none
@@ -137,7 +137,5 @@ There is none at the generation but you can add `.jade`, `.haml` or `.hbs` (depe
 * *UI Framework*: Bootstrap, Foundation, Angular Material, Material Design Lite, none (depends on the chosen CSS preprocessor)
 * *UI directives* : UI Bootstrap, Angular Strap, official Bootstrap JavaScript, Angular Foundation, official Foundation JavaScript, none (depends on the UI framework)
 * *CSS pre-processor*: Less, Sass with Ruby and Node, Stylus, none
-* *JS preprocessor*: CoffeeScript, TypeScript, ECMAScript 6 (Traceur and Babel), none
 * *HTML preprocessor*: Jade, Haml, Handlebars, none
-* **TODO** Script loader: Require, Webpack, none
-* **TODO** Test framework: Jasmine, Mocha, Qunit
+* *SII Modules*: angular-translate
