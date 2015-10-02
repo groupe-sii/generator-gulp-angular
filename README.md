@@ -73,7 +73,7 @@ yo gulp-angular [app-name]
 
 ## SII Modules
 
-* *[angular-translate](docs/usage.md)*: i18n for your Angular app, made easy!
+* *[angular-translate](docs/sii/angular-translate.md)*: i18n for your Angular app, made easy!
 
 ## Questions the generator will ask
 
