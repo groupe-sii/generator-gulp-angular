@@ -13,7 +13,7 @@
 
 More informations, options, parameters in the [usage documentation page](docs/usage.md)
 
-## Best pratices
+### Best pratices
 
 [Angular Style Guide by John Papa](https://github.com/johnpapa/angular-styleguide)
 

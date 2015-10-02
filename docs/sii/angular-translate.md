@@ -1,3 +1,3 @@
-# Usage
+# angular-translate
 
 ## TODO
