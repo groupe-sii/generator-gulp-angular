@@ -50,5 +50,5 @@ $translate.instant('app.title');
 ## New language
 
 To add a new language, you must :
-* Create the new json file ```/config/languages/LANG.json```
-* Inform the translate provider in the ```index.js```
+* Create the new language file ```/config/languages/LANG.json```
+* Inform the translate provider that a new language has been created (```index.js```)
