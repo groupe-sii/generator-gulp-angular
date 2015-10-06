@@ -42,7 +42,9 @@ function browserSyncInit(baseDir, browser) {
   browserSync.instance = browserSync.init({
     startPath: '/',
     server: server,
-    browser: browser
+    browser: browser,
+    notify: false,
+    open: false
 <% if(qrCode) { -%>
   }, function(err, bs) {
     qrcode.generate(bs.options.get('urls').get('external'));
