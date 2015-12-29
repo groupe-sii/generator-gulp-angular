@@ -1,12 +1,12 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+var path = require('path'),
+    gulp = require('gulp'),
+    conf = require('./conf'),
 
-var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
-});
+    $ = require('gulp-load-plugins')({
+        pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del', 'run-sequence']
+    });
 
 <% if (props.htmlPreprocessor.key === 'noHtmlPrepro') { -%>
 gulp.task('partials', function () {
@@ -126,7 +126,15 @@ gulp.task('clean', function () {
 });
 
 <% if (imageMin) { -%>
-gulp.task('build', ['config', 'html', 'images', 'fonts', 'other']);
+gulp.task('build', function() {
+    return $.runSequence(
+        'clean', 'config', 'html', 'images', 'fonts', 'other'
+    );
+});
 <% } else { -%>
-gulp.task('build', ['config', 'html', 'fonts', 'other']);
+gulp.task('build', function() {
+    return $.runSequence(
+        'clean', 'config', 'html', 'fonts', 'other'
+    );
+});
 <% } -%>
