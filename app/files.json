@@ -53,6 +53,8 @@
     "src/app/index.js",
     "src/index.html",
     "src/app/main/main.controller.js",
+    "src/doc/accueil.ngdoc",
+    "src/doc/project.doc.css",
     "src/app/components/app-technologies/app-technologies.service.js"
   ]
 }
