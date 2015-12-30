@@ -18,7 +18,7 @@ module.exports = function(GulpAngularGenerator) {
             this.props.ui.module,
             this.props.bootstrapComponents.module,
             this.props.foundationComponents.module,
-            this.appName + '-config'
+            this.props.appName + '-config'
         ]);
 
         ngModules = _.merge(ngModules, this.props.otherModules.map(function(module) {

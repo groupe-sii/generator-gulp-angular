@@ -3,11 +3,13 @@
 
     /**
      * @ngdoc object
-     * @name <%- appName %>
-     * @description <%- appName %> main module
+     * @name  <%- props.appName %>
+     * @description
+     *
+     * Main module of <%- appName %> application
      */
     angular
-        .module('<%- appName %>', [
+        .module('<%- props.appName %>', [
             <%- modulesDependencies %>
         ])
         .config(config)

@@ -1,8 +1,16 @@
 (function() {
     'use strict';
 
+    /**
+     * @ngdoc controller
+     * @name  <%- props.appName %>.controller:MainController
+     * @description
+     *
+     * Main Controller
+     */
+
     angular
-        .module('<%- appName %>')
+        .module('<%- props.appName %>')
         .controller('MainController', MainController);
 
     /* @ngInject */

@@ -1,4 +1,4 @@
-###<%- appName %> Frontend
+###<%- props.appName %> Frontend
 
 ## Pre-requis machine
 

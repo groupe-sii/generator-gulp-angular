@@ -21,6 +21,13 @@
     "defaults": "e2e"
   },
   {
+    "name": "doc-path",
+    "type": "String",
+    "required": false,
+    "desc": "doc folder, relative to cwd",
+    "defaults": "doc"
+  },
+  {
     "name": "tmp-path",
     "type": "String",
     "required": false,

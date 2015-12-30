@@ -1,8 +1,16 @@
 (function() {
     'use strict';
 
+    /**
+     * @ngdoc service
+     * @name  <%- props.appName %>.service:AppTechnologiesService
+     * @description
+     *
+     * AppTechnologies Service
+     */
+
     angular
-        .module('<%- appName %>')
+        .module('<%- props.appName %>')
         .service('AppTechnologiesService', AppTechnologiesService);
 
     AppTechnologiesService.$inject = [];

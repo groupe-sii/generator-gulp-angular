@@ -28,7 +28,7 @@ gulp.task('config', function() {
 
     return gulp.src(conf.paths.config + '/project.config.json')
         .pipe($.ngConstant({
-            name: '<%- appName %>-config',
+            name: '<%- props.appName %>-config',
             templatePath: conf.paths.config + '/project.config.tpl.ejs',
             deps: '',
             constants: {

@@ -1,4 +1,9 @@
 [
+    {
+    "type": "input",
+    "name": "appName",
+    "message": "Project name please ?"
+  },
   {
     "type": "list",
     "name": "angularVersion",

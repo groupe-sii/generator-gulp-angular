@@ -31,7 +31,8 @@ module.exports = function(GulpAngularGenerator) {
         dist: this.options['dist-path'],
         e2e: this.options['e2e-path'],
         tmp: this.options['tmp-path'],
-        config: this.options['config-path']
+        config: this.options['config-path'],
+        doc: this.options['doc-path']
       }
     });
   };

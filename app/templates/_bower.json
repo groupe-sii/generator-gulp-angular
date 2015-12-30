@@ -1,5 +1,5 @@
 {
-  "name": "<%- appName %>",
+  "name": "<%- props.appName %>",
   "version": "0.0.0",
   "dependencies": {
 <% if (includeModernizr) { -%>

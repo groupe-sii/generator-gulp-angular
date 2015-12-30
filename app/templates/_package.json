@@ -1,5 +1,5 @@
 {
-  "name": "<%- appName %>",
+  "name": "<%- props.appName %>",
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
@@ -54,12 +54,6 @@
 <% } -%>
     "main-bower-files": "~2.9.0",
     "wiredep": "~2.2.2",
-    "karma": "~0.13.9",
-    "karma-jasmine": "~0.3.6",
-    "karma-phantomjs-launcher": "~0.2.1",
-    "karma-angular-filesort": "~1.0.0",
-    "karma-coverage": "~0.5.2",
-    "karma-ng-html2js-preprocessor": "~0.1.2",
     "browser-sync": "~2.9.2",
     "browser-sync-spa": "~1.0.2",
     "http-proxy-middleware": "~0.8.0",
