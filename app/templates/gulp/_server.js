@@ -1,15 +1,15 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+var path = require('path'),
+    gulp = require('gulp'),
+    conf = require('./conf'),
 
-var browserSync = require('browser-sync');
-var browserSyncSpa = require('browser-sync-spa');
+    browserSync = require('browser-sync'),
+    browserSyncSpa = require('browser-sync-spa'),
 
-var util = require('util');
+    util = require('util'),
 
-var proxyMiddleware = require('http-proxy-middleware');
+    proxyMiddleware = require('http-proxy-middleware');
 <% if(qrCode) { -%>
 
 var qrcode = require('qrcode-terminal');
