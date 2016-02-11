@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var utils = require('./utils.js');
 
-var pathOptions = ['app-path', 'dist-path', 'e2e-path', 'tmp-path', 'config-path'];
+var pathOptions = ['app-path', 'dist-path', 'e2e-path', 'tmp-path', 'config-path', 'release-path'];
 
 module.exports = function(GulpAngularGenerator) {
 
@@ -32,7 +32,8 @@ module.exports = function(GulpAngularGenerator) {
         e2e: this.options['e2e-path'],
         tmp: this.options['tmp-path'],
         config: this.options['config-path'],
-        doc: this.options['doc-path']
+        doc: this.options['doc-path'],
+        release: this.options['release-path']
       }
     });
   };

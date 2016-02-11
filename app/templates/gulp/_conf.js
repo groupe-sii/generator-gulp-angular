@@ -16,7 +16,8 @@ exports.paths = {
     dist: '<%- props.paths.dist %>',
     tmp: '<%- props.paths.tmp %>',
     e2e: '<%- props.paths.e2e %>',
-    config: '<%- props.paths.config %>'
+    config: '<%- props.paths.config %>',
+    release: '<%- props.paths.release %>'
 };
 
 /**
