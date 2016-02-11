@@ -28,6 +28,13 @@
     "defaults": "doc"
   },
   {
+    "name": "release-path",
+    "type": "String",
+    "required": false,
+    "desc": "release folder, relative to cwd",
+    "defaults": "release"
+  },
+  {
     "name": "tmp-path",
     "type": "String",
     "required": false,
