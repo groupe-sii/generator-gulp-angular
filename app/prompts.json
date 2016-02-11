@@ -10,11 +10,15 @@
     "message": "Which version of Angular do you want?",
     "choices": [
       {
-        "value": "~1.4.2",
+        "value": "~1.5.0",
+        "name": "1.5.x (rc)"
+      },
+      {
+        "value": "~1.4.9",
         "name": "1.4.x (stable)"
       },
       {
-        "value": "~1.3.16",
+        "value": "~1.3.20",
         "name": "1.3.x (legacy)"
       }
     ]
