@@ -37,18 +37,17 @@ gulp.task('html', ['inject', 'partials'], function () {
         },
         htmlFilter = $.filter('*.html', { restore: true }),
         jsFilter = $.filter('**/*.js', { restore: true }),
-        cssFilter = $.filter('**/*.css', { restore: true }),
-        assets;
+        cssFilter = $.filter('**/*.css', { restore: true });
 
     return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
         .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-        .pipe(assets = $.useref.assets())
-        .pipe($.rev())
+        .pipe($.useref())
         .pipe(jsFilter)
         .pipe($.sourcemaps.init())
         .pipe($.ngAnnotate())
         .pipe($.stripDebug())
         .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
+        .pipe($.rev())
         .pipe($.sourcemaps.write('maps'))
         .pipe(jsFilter.restore)
         .pipe(cssFilter)
@@ -63,10 +62,9 @@ gulp.task('html', ['inject', 'partials'], function () {
         .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/material-design-iconfont/iconfont/', '../fonts/'))
 <% } -%>
         .pipe($.minifyCss({ processImport: false }))
+        .pipe($.rev())
         .pipe($.sourcemaps.write('maps'))
         .pipe(cssFilter.restore)
-        .pipe(assets.restore())
-        .pipe($.useref())
         .pipe($.revReplace())
         .pipe(htmlFilter)
         .pipe($.htmlmin({
