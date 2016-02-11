@@ -62,7 +62,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 <% } else if (props.ui.key === 'material-design-lite' || props.ui.key === 'angular-material') { -%>
         .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/material-design-iconfont/iconfont/', '../fonts/'))
 <% } -%>
-        .pipe($.cssnano())
+        .pipe($.minifyCss({ processImport: false }))
         .pipe($.sourcemaps.write('maps'))
         .pipe(cssFilter.restore)
         .pipe(assets.restore())
@@ -112,7 +112,8 @@ gulp.task('other', function () {
 
     return gulp.src([
         path.join(conf.paths.src, '/**/*'),
-        path.join('!' + conf.paths.src, '/**/*.{<%- processedFileExtension %>}')
+        path.join('!' + conf.paths.src, '/**/*.{<%- processedFileExtension %>}'),
+        path.join('!' + conf.paths.src, '/doc/*.{ngdoc,css>}')
     ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));

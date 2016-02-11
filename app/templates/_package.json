@@ -13,7 +13,7 @@
     "del": "~2.2.0",
     "eslint": "1.10.3",
     "lodash": "~4.3.0",
-    "gulp-cssnano": "~2.1.1",
+    "gulp-minify-css": "~1.2.1",
     "intern": "3.0.6",
     "run-sequence": "1.1.5",
     "gulp-filter": "~3.0.1",
