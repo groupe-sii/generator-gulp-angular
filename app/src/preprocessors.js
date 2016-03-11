@@ -19,6 +19,7 @@ module.exports = function(GulpAngularGenerator) {
             'css',
             'js',
             this.props.cssPreprocessor.extension,
+            this.props.jsPreprocessor.extension,
             this.props.htmlPreprocessor.extension
         ];
         if (this.imageMin) {
@@ -36,6 +37,10 @@ module.exports = function(GulpAngularGenerator) {
      */
     GulpAngularGenerator.prototype.computeWatchTaskDeps = function computeInjectTaskDeps() {
         this.watchTaskDeps = [];
+
+        if (this.props.jsPreprocessor.srcExtension === 'es6' || this.props.jsPreprocessor.srcExtension === 'ts') {
+           this.watchTaskDeps.push('\'scripts:watch\'');
+        }
 
         if (this.props.htmlPreprocessor.key !== 'noHtmlPrepro') {
             this.watchTaskDeps.push('\'markups\'');
@@ -55,12 +60,21 @@ module.exports = function(GulpAngularGenerator) {
             rejectWithRegexp.call(this, /styles\.js/);
         }
 
-        // FIXME Try delete
-        rejectWithRegexp.call(this, /tsd\.json/);
-        rejectWithRegexp.call(this, /tsconfig\.json/);
+        if(this.props.jsPreprocessor.key !== 'typescript') {
+            rejectWithRegexp.call(this, /tsd\.json/);
+            rejectWithRegexp.call(this, /tsconfig\.json/);
+        }
+
+        if (this.props.jsPreprocessor.srcExtension === 'es6' || this.props.jsPreprocessor.key === 'typescript') {
+            rejectWithRegexp.call(this, /index\.constants\.js/);
+        }
 
         if (this.props.htmlPreprocessor.key === 'noHtmlPrepro') {
             rejectWithRegexp.call(this, /markups\.js/);
+        }
+
+        if (this.props.jsPreprocessor.key !== 'noJsPrepro') {
+            rejectWithRegexp.call(this, /^(?!^e2e\/).*spec\.js/);
         }
     };
 
@@ -68,7 +82,13 @@ module.exports = function(GulpAngularGenerator) {
      * Copy additional lint files if needed
      */
     GulpAngularGenerator.prototype.lintCopies = function lintCopies() {
-        // FIXME Try delete
+        if (this.props.jsPreprocessor.key === 'typescript') {
+          this.files.push({
+            src: 'tslint.json',
+            dest: 'tslint.json',
+            template: false
+          });
+        }
     };
 
     /**

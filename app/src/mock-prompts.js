@@ -23,6 +23,7 @@ var questions = [
     'bootstrapComponents',
     'foundationComponents',
     'cssPreprocessor',
+    'jsPreprocessor',
     'htmlPreprocessor',
     'otherModules'
 ];
@@ -73,6 +74,10 @@ model.foundationComponents.choices.forEach(function(choice) {
 
 model.cssPreprocessor.choices.forEach(function(choice) {
     model.cssPreprocessor.values[choice.value.key] = choice.value;
+});
+
+model.jsPreprocessor.choices.forEach(function(choice) {
+    model.jsPreprocessor.values[choice.value.key] = choice.value;
 });
 
 model.htmlPreprocessor.choices.forEach(function(choice) {

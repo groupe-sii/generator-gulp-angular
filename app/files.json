@@ -50,7 +50,10 @@
     "gulp/tests.js",
     "gulp/watch.js",
 
-    "src/app/index.js",
+    "src/app/index.module.js",
+    "src/app/index.config.js",
+    "src/app/index.constants.js",
+    "src/app/index.run.js",
     "src/index.html",
     "src/app/main/main.controller.js",
     "src/doc/accueil.ngdoc",

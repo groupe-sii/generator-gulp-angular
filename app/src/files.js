@@ -19,11 +19,11 @@ function resolvePaths(template) {
         }
 
         if (src.match(/\.js$/)) {
-            var preprocessorFile = this.sourceRoot() + '/' + src.replace(/\.js$/, '.js');
-            if (this.fs.exists(preprocessorFile)) {
-                src = src.replace(/\.js$/, '.js');
-                dest = dest.replace(/\.js$/, '.js');
-            }
+            var preprocessorFile = this.sourceRoot() + '/' + src.replace(/\.js$/, '.' + this.props.jsPreprocessor.srcExtension);
+            if(this.fs.exists(preprocessorFile)) {
+             src = src.replace(/\.js$/, '.' + this.props.jsPreprocessor.srcExtension);
+             dest = dest.replace(/\.js$/, '.' + this.props.jsPreprocessor.extension);
+           }
         }
 
         return {

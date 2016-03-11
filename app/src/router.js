@@ -12,22 +12,22 @@ module.exports = function(GulpAngularGenerator) {
         if (this.props.router.key === 'angular-route') {
             this.routerHtml = '<div ng-view></div>';
             this.files.push({
-                src: 'src/app/_routers/__ngroute.js',
-                dest: 'src/app/index.route.js',
+                src: 'src/app/_routers/__ngroute.' + this.props.jsPreprocessor.srcExtension,
+                dest: 'src/app/index.route.' + this.props.jsPreprocessor.extension,
                 template: true
             });
         } else if (this.props.router.key === 'ui-router') {
             this.routerHtml = '<div ui-view></div>';
             this.files.push({
-                src: 'src/app/_routers/__uirouter.js',
-                dest: 'src/app/index.route.js',
+                src: 'src/app/_routers/__uirouter.' + this.props.jsPreprocessor.srcExtension,
+                dest: 'src/app/index.route.' + this.props.jsPreprocessor.extension,
                 template: true
             });
         } else if (this.props.router.key === 'new-router') {
             this.routerHtml = '<div ng-viewport ng-controller="RouterController"></div>';
             this.files.push({
-                src: 'src/app/_routers/__newrouter.js',
-                dest: 'src/app/index.route.js',
+                src: 'src/app/_routers/__newrouter.js.' + this.props.jsPreprocessor.srcExtension,
+                dest: 'src/app/index.route.js.' + this.props.jsPreprocessor.extension,
                 template: true
             });
         } else {

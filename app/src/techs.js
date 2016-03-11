@@ -16,6 +16,7 @@ module.exports = function(GulpAngularGenerator) {
                 this.props.bootstrapComponents.key,
                 this.props.foundationComponents.key,
                 this.props.cssPreprocessor.key,
+                this.props.jsPreprocessor.key,
                 this.props.htmlPreprocessor.key
             ])
             .filter(_.isString)
