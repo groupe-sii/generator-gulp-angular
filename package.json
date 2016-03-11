@@ -1,5 +1,5 @@
 {
-  "name": "generator-gulp-angular",
+  "name": "generator-gulp-angular-sii",
   "version": "1.0.0-rc2",
   "preferGlobal": true,
   "description": "Yeoman generator for AngularJS with Gulp",
