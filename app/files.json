@@ -34,7 +34,7 @@
 
     "package.json",
     "bower.json",
-    "tsd.json",
+    "typings.json",
 
     "gulp/build.js",
     "gulp/conf.js",

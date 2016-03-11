@@ -5,7 +5,7 @@
   "scripts": {
     "test": "gulp test"
 <% if (props.jsPreprocessor.key === 'typescript') { -%>
-        ,"postinstall": "tsd install"
+        ,"postinstall": "typings install"
 <% } -%>
   },
   "devDependencies": {

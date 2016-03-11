@@ -1,4 +1,4 @@
-import { AppTechnologiesService, ITecThing } from '../components/webDevTec/webDevTec.service';
+import { AppTechnologiesService, ITecThing } from '../components/app-technologies/app-technologies.service';
 
 export class MainController {
   public awesomeThings: ITecThing[];
@@ -21,7 +21,7 @@ export class MainController {
   activate($timeout: angular.ITimeoutService) {
     this.getAppTechnologies();
 
-    $timeout(()=> {
+    $timeout(() => {
       this.classAnimation = 'rubberBand';
     }, 4000);
   }

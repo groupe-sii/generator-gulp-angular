@@ -1,80 +1,39 @@
 {
-  "version": "v4",
-  "repo": "borisyankov/DefinitelyTyped",
-  "ref": "master",
-  "path": "<%- props.paths.tmp %>/typings",
-  "bundle": "<%- props.paths.tmp %>/typings/tsd.d.ts",
-  "installed": {
+    "name": "testTS",
+    "version": false,
+    "dependencies": {},
+    "ambientDependencies": {
 <% if (angularModulesObject.animate) { -%>
-    "angularjs/angular-animate.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-animate": "registry:dt/angular-animate#1.5.0+20160220205416",
 <% } if (angularModulesObject.cookies) { -%>
-    "angularjs/angular-cookies.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-cookies": "registry:dt/angular-cookies#1.4.0+20160215162030",
 <% } if (angularModulesObject.sanitize) { -%>
-    "angularjs/angular-sanitize.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
-<% } if (props.jQuery.key === 'jquery2' || props.jQuery.key === 'jquery1') { -%>
-    "jquery/jquery.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-sanitize": "registry:dt/angular-sanitize#1.3.0+20160215162030",
 <% } if (props.jQuery.key === 'zepto') { -%>
-    "zepto/zepto.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "zepto": "registry:dt/zepto#1.0.0+20160127102120"
 <% } if (props.resource.key === 'angular-resource') { -%>
-    "angularjs/angular-resource.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-resource": "registry:dt/angular-resource#1.5.0+20160310132645",
 <% } if (props.resource.key === 'restangular') { -%>
-    "restangular/restangular.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "restangular": "registry:dt/restangular#1.4.0+20151113182404",
 <% } if (props.router.key === 'ui-router') { -%>
-    "angular-ui-router/angular-ui-router.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160112161118",
 <% } if (props.router.key === 'angular-route') { -%>
-    "angularjs/angular-route.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-route": "registry:dt/angular-route#1.3.0+20160211081409",
 <% } if(props.ui.key === 'bootstrap' && props.bootstrapComponents === 'official') { -%>
-    "bootstrap/bootstrap.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "bootstrap": "registry:dt/bootstrap#3.3.5+20160215162030",
 <% } if(props.ui.key === 'foundation' && props.foundationComponents === 'official') { -%>
-    "foundation/foundation.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "foundation": "registry:dt/foundation#5.5.1+20151108110832",
 <% } if(props.ui.key === 'angular-material') { -%>
-    "angular-material/angular-material.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-material": "registry:dt/angular-material#0.8.3+20151209155215",
 <% } if(props.bootstrapComponents.key === 'ui-bootstrap') { -%>
-    "angular-ui-bootstrap/angular-ui-bootstrap.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
+    "angular-ui-bootstrap": "registry:dt/angular-ui-bootstrap#0.13.3+20160212100300",
 <% } -%>
-    "angularjs/angular.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
-    "angularjs/angular-mocks.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
-    "jasmine/jasmine.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
-    "karma-jasmine/karma-jasmine.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
-    "moment/moment.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    },
-    "moment/moment-node.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
-    }
+    "angular": "registry:dt/angular#1.5.0+20160310153852",
+    "angular-mocks": "registry:dt/angular-mocks#1.3.0+20160215162030",
+    "jquery": "registry:dt/jquery#1.10.0+20160303223636",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160308082659",
+    "karma-jasmine": "registry:dt/karma-jasmine#0.0.0+20150625071724",
+    "moment": "registry:dt/moment#2.8.0+20150810140021",
+    "moment-node": "registry:dt/moment-node#2.11.1+20160311085853"
   }
 }
