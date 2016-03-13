@@ -22,7 +22,8 @@
     "config/development/project.service.config.json",
     "config/production/project.service.config.json",
     "config/project.config.json",
-    "config/project.config.tpl.ejs"
+    "config/project.config.tpl.ejs",
+    "config/project.config-ts.tpl.ejs"
   ],
   "templates": [
     ".gitignore",

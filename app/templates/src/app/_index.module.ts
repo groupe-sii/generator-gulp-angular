@@ -7,11 +7,15 @@ import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { AppTechnologiesService } from './components/app-technologies/app-technologies.service';
+import { <%- props.appName %>Config } from './config';
 
 module <%- props.appName %> {
   'use strict';
 
-  angular.module('<%- props.appName %>', [<%- modulesDependencies %>])
+  angular.module('<%- props.appName %>', [
+      <%- modulesDependencies %>,
+      <%- props.appName %>Config.name
+  ])
     .config(config)
 <% if (props.router.key !== 'noRouter') { -%>
     .config(routerConfig)

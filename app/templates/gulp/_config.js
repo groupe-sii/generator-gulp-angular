@@ -28,14 +28,22 @@ gulp.task('config', function() {
 
     return gulp.src(conf.paths.config + '/project.config.json')
         .pipe($.ngConstant({
-            name: '<%- props.appName %>-config',
+            name: '<%- props.appName %>Config',
+            <% if (props.jsPreprocessor.key === 'typescript') { -%>
+            templatePath: conf.paths.config + '/project.config-ts.tpl.ejs',
+            } else { -%>
             templatePath: conf.paths.config + '/project.config.tpl.ejs',
+            <% } -%>
             deps: '',
             constants: {
                 API_INFOS: serviceConfig<% if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>,
                 LANGUAGES: languagesConfig<% } -%>
             }
         }))
+        <% if (props.jsPreprocessor.key === 'typescript') { -%>
+        .pipe($.rename('config.ts'))
+        } else { -%>
         .pipe($.rename('config.js'))
+        <% } -%>
         .pipe(gulp.dest(conf.paths.src + '/app'));
 });

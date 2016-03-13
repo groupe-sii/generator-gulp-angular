@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     conf = require('./conf'),
     $ = require('gulp-load-plugins')({
-        pattern: ['gulp-*', 'run-sequence']
+        pattern: ['gulp-*', 'run-sequence', 'tslint-stylish']
     });
 
 gulp.task('js-hint', function() {
@@ -31,6 +31,15 @@ gulp.task('html-hint', function() {
     return gulp.src(conf.paths.src + '/{app,components}/**/*.html')
         .pipe($.htmlhint({
             htmlhintrc: '.htmlhintrc'
+        }));
+});
+
+gulp.task('ts-lint', function() {
+    return gulp.src(conf.paths.src + '/{app,components}/**/*.ts')
+        .pipe($.tslint())
+        .pipe($.tslint.report($.tslintStylish, {
+            emitError: false,
+            bell: false
         }));
 });
 
