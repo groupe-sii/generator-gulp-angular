@@ -48,6 +48,7 @@ gulp.task('html', ['inject', 'partials'], function () {
         .pipe($.ngAnnotate())
 <% } -%>
         .pipe($.stripDebug())
+        .pipe($.stripNgLog())
         .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
         .pipe($.rev())
         .pipe($.sourcemaps.write('maps'))

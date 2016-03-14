@@ -30,6 +30,7 @@
     "gulp-size": "~2.1.0",
     "gulp-uglify": "~1.5.2",
     "gulp-strip-debug": "^1.1.0",
+    "gulp-strip-ng-log": "^1.1.2",
     "gulp-useref": "~3.0.5",
     "gulp-util": "~3.0.7",
     "gulp-ng-constant": "~1.1.0",
