@@ -1,14 +1,14 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('<%- props.appName %>')
-    .run(runBlock);
+    angular
+        .module('<%- props.appName %>')
+        .run(runBlock);
 
-  /** @ngInject */
-  function runBlock($log) {
+    /** @ngInject */
+    function runBlock($log) {
 
-    $log.debug('runBlock end');
-  }
+        $log.debug('runBlock end');
+    }
 
 })();

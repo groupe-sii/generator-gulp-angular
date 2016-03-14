@@ -43,7 +43,7 @@ gulp.task('inject', ['scripts'], function () {
 ], { read: false }),
 <% } -%>
 
-    injectOptions = {
+    var injectOptions = {
         ignorePath: [conf.paths.src, path.join(conf.paths.tmp, '/serve')],
         addRootSlash: false
     };

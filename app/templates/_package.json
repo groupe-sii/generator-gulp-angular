@@ -4,9 +4,6 @@
   "dependencies": {},
   "scripts": {
     "test": "gulp test"
-<% if (props.jsPreprocessor.key === 'typescript') { -%>
-        ,"postinstall": "typings install"
-<% } -%>
   },
   "devDependencies": {
     "gulp": "~3.9.1",
