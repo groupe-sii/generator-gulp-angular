@@ -15,6 +15,7 @@ export class MainController {
     this.AppTechnologiesService = AppTechnologiesService;
     this.classAnimation = '';
     this.activate($timeout);
+    this.toastr = toastr;
   }
 
   /** @ngInject */

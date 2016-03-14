@@ -121,6 +121,7 @@ module.exports = function(GulpAngularGenerator) {
       }
 
       this.props = _.merge(this.props, props);
+      this.props.appNameClean = this.props.appName.replace(/-/g, '')
 
       done();
     }.bind(this));

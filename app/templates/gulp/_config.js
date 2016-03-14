@@ -28,10 +28,10 @@ gulp.task('config', function() {
 
     return gulp.src(conf.paths.config + '/project.config.json')
         .pipe($.ngConstant({
-            name: '<%- props.appName %>Config',
+            name: '<%- props.appNameClean %>Config',
             <% if (props.jsPreprocessor.key === 'typescript') { -%>
-            templatePath: conf.paths.config + '/project.config-ts.tpl.ejs',
-            } else { -%>
+    templatePath: conf.paths.config + '/project.config-ts.tpl.ejs',
+            <% } else { -%>
             templatePath: conf.paths.config + '/project.config.tpl.ejs',
             <% } -%>
             deps: '',
@@ -40,10 +40,12 @@ gulp.task('config', function() {
                 LANGUAGES: languagesConfig<% } -%>
             }
         }))
+
         <% if (props.jsPreprocessor.key === 'typescript') { -%>
-        .pipe($.rename('config.ts'))
-        } else { -%>
-        .pipe($.rename('config.js'))
+    .pipe($.rename('config.ts'))
+        <% } else { -%>
+    .pipe($.rename('config.js'))
         <% } -%>
+
         .pipe(gulp.dest(conf.paths.src + '/app'));
 });

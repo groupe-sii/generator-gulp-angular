@@ -40,7 +40,7 @@ gulp.task('inject', ['scripts'], function () {
 ])
 .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'));
 <% } else {-%>
-], { read: false }),
+], { read: false });
 <% } -%>
 
     var injectOptions = {

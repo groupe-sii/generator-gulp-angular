@@ -7,7 +7,6 @@
     "tsconfig.json",
 
     "gulpfile.js",
-    "gulp/.eslintrc",
 
     "src/favicon.ico",
     "src/assets/images/yeoman.png",
