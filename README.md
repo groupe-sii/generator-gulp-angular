@@ -38,7 +38,7 @@ mkdir my-new-project && cd $_
 
 ##### Run `yo gulp-angular`, and select desired technologies:
 ```
-yo gulp-angular [app-name]
+yo gulp-angular-sii [app-name]
 ```
 
 ## Documentation
