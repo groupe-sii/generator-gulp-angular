@@ -3,11 +3,14 @@
 var path = require('path'),
     gulp = require('gulp'),
     conf = require('./conf'),
-
     $ = require('gulp-load-plugins')(),
-
     wiredep = require('wiredep').stream,
-    _ = require('lodash');
+    _ = require('lodash'),
+    browserSync = require('browser-sync');
+
+gulp.task('inject-reload', ['inject'], function() {
+    browserSync.reload();
+});
 
 <% if (props.cssPreprocessor.key !== 'noCssPrepro') { -%>
 gulp.task('inject', ['scripts', 'styles'], function () {
