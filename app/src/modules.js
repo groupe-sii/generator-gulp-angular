@@ -17,13 +17,15 @@ module.exports = function(GulpAngularGenerator) {
             this.props.router.module,
             this.props.ui.module,
             this.props.bootstrapComponents.module,
-            this.props.foundationComponents.module
+            this.props.foundationComponents.module,
+            this.props.appNameClean + 'Config'
         ]);
 
         ngModules = _.merge(ngModules, this.props.otherModules.map(function(module) {
             return module.module;
         }));
 
+        // Toastr
         ngModules.push('toastr');
 
         this.modulesDependencies = ngModules

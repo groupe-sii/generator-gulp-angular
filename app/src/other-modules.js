@@ -28,6 +28,8 @@ module.exports = function(GulpAngularGenerator) {
         var injections = this.props.otherModules.map(function(module) {
             return module.inject;
         })[0];
+        
+        injections.push('$logProvider');
 
         this.props.baseInjectionsQuotes = '';
         this.props.baseInjections = '';

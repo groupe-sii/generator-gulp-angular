@@ -6,7 +6,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($logProvider<% if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>, $translateProvider<% } -%>) {
+    function config(<%- props.baseInjections %>) {
 
         // Logging
         $logProvider.debugEnabled(true);
