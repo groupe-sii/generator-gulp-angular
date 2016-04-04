@@ -28,8 +28,12 @@ module.exports = function(GulpAngularGenerator) {
         var injections = this.props.otherModules.map(function(module) {
             return module.inject;
         })[0];
-        
-        injections.push('$logProvider');
+
+        if (typeof injections !== 'undefined' && injections.length > 0) {
+            injections.push('$logProvider');
+        } else {
+            injections = ['$logProvider'];
+        }
 
         this.props.baseInjectionsQuotes = '';
         this.props.baseInjections = '';
