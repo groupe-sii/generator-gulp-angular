@@ -3,14 +3,18 @@
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "postinstall": "cd docs/application && bower install"
   },
   "devDependencies": {
     "gulp": "~3.9.1",
     "gulp-autoprefixer": "~3.1.0",
+    "canonical-path": "0.0.2",
     "gulp-angular-architecture-graph": "~0.0.3",
     "gulp-angular-templatecache": "~1.8.0",
     "del": "~2.2.0",
+    "dgeni": "^0.4.2",
+    "dgeni-packages": "^0.13.0",
     "eslint": "1.10.3",
     "lodash": "~4.6.1",
     "gulp-minify-css": "~1.2.1",
@@ -37,9 +41,9 @@
 <% if (props.jsPreprocessor.srcExtension !== 'es6' && props.jsPreprocessor.key !== 'typescript') { -%>
     "gulp-ng-annotate": "~1.1.0",
 <% } -%>
-    "gulp-ngdocs": "https://github.com/groupe-sii/gulp-ngdocs/tarball/master",
     "gulp-replace": "~0.5.4",
     "gulp-rename": "~1.2.2",
+    "gulp-ng-html2js": "^0.2.2",
     "gulp-rev": "~7.0.0",
     "gulp-rev-replace": "~0.4.3",
     "gulp-htmlmin": "~1.3.0",

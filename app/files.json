@@ -22,7 +22,34 @@
     "config/production/project.service.config.json",
     "config/project.config.json",
     "config/project.config.tpl.ejs",
-    "config/project.config-ts.tpl.ejs"
+    "config/project.config-ts.tpl.ejs",
+
+    "docs/content/api.ngdoc",
+    "docs/content/guide.ngdoc",
+    "docs/content/guide/howToUse.ngdoc",
+
+    "docs/application/.bowerrc",
+    "docs/application/bower.json",
+    "docs/application/lib/bowerCommonFiles.js",
+    "docs/application/config/index.js",
+    "docs/application/config/processors/navigation.js",
+    "docs/application/config/templates/area-data.template.js",
+    "docs/application/config/templates/base.template.html",
+    "docs/application/config/templates/module.template.html",
+    "docs/application/config/templates/nav-data.template.js",
+    "docs/application/config/templates/runnableExample.template.html",
+
+
+    "docs/application/app/index.html",
+    "docs/application/app/env_dist.js",
+    "docs/application/app/styles/docs.css",
+    "docs/application/app/src/a.directive.js",
+    "docs/application/app/src/docs.controller.js",
+    "docs/application/app/src/index.js",
+    "docs/application/app/src/main.html",
+    "docs/application/app/src/navbar.controller.js",
+    "docs/application/app/src/navbar.html",
+    "docs/application/app/src/pre.directive.js"
   ],
   "templates": [
     ".gitignore",
@@ -50,13 +77,13 @@
     "gulp/tests.js",
     "gulp/watch.js",
 
+    "docs/content/index.ngdoc",
+
     "src/app/index.module.js",
     "src/app/index.config.js",
     "src/app/index.run.js",
     "src/index.html",
     "src/app/main/main.controller.js",
-    "src/doc/accueil.ngdoc",
-    "src/doc/project.doc.css",
     "src/app/components/app-technologies/app-technologies.service.js"
   ]
 }

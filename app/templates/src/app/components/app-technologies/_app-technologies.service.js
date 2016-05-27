@@ -3,7 +3,8 @@
 
     /**
      * @ngdoc service
-     * @name  <%- props.appName %>.service:AppTechnologiesService
+     * @name  AppTechnologiesService
+     * @module <%- props.appName %>
      * @description
      *
      * AppTechnologies Service
@@ -26,6 +27,12 @@
 
         ////////////////
 
+        /**
+         * @ngdoc method
+         * @name AppTechnologiesService#getTechs
+         * @return {array} Array of technologies
+         * @description Return an array of technologies
+         */
         function getTechs() {
             return <%- technologies %>;
         }
