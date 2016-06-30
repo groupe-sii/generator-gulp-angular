@@ -24,8 +24,9 @@ module.exports = function(GulpAngularGenerator) {
         files = this.files.filter(function (file) {
           return file.src !== '_bower.json' && file.src !== '.bowerrc';
         });
+      } else {
+        files = this.files;
       }
-      console.log(files);
 
       files.forEach(function(file) {
         var dest = utils.replacePrefix(file.dest, this.props.paths);
