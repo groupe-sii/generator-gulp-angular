@@ -64,7 +64,7 @@ module.exports = function(GulpAngularGenerator) {
       }
     }
 
-    if (this.props.bootstrapComponents.key === 'ui-bootstrap') {
+    if (this.props.bootstrapComponents.key === 'ui-bootstrap' && this.props.packageManager.key === 'npm') {
       packageManagerOverrides['angular-ui-bootstrap'] = {
         main: './dist/ui-bootstrap.js'
       };
