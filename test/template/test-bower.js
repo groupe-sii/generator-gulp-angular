@@ -142,12 +142,12 @@ describe('gulp-angular bower template', function () {
     result.should.not.match(/foundation/);
     result.should.not.match(/angular-material/);
     result.should.not.match(/material-design-lite/);
-    result.should.not.match(/material-design-iconfont/);
+    result.should.not.match(/mdi/);
 
     model.props.ui.key = 'angular-material';
     result = bower(model);
     result.should.match(/angular-material/);
-    result.should.match(/material-design-iconfont/);
+    result.should.match(/mdi/);
     result.should.not.match(/boostrap/);
     result.should.not.match(/foundation/);
     result.should.not.match(/material-design-lite/);
@@ -155,7 +155,7 @@ describe('gulp-angular bower template', function () {
     model.props.ui.key = 'material-design-lite';
     result = bower(model);
     result.should.match(/material-design-lite/);
-    result.should.match(/material-design-iconfont/);
+    result.should.match(/mdi/);
     result.should.not.match(/boostrap/);
     result.should.not.match(/angular-material/);
     result.should.not.match(/foundation/);
@@ -169,7 +169,7 @@ describe('gulp-angular bower template', function () {
     result.should.not.match(/foundation/);
     result.should.not.match(/angular-material/);
     result.should.not.match(/material-design-lite/);
-    result.should.not.match(/material-design-iconfont/);
+    result.should.not.match(/mdi/);
 
     model.props.bootstrapComponents.key = 'angular-strap';
     model.props.cssPreprocessor.extension = 'less';
@@ -179,7 +179,7 @@ describe('gulp-angular bower template', function () {
     result.should.not.match(/foundation/);
     result.should.not.match(/angular-material/);
     result.should.not.match(/material-design-lite/);
-    result.should.not.match(/material-design-iconfont/);
+    result.should.not.match(/mdi/);
 
     model.props.bootstrapComponents.key = 'noBootstrapComponents';
     model.props.cssPreprocessor.extension = 'styl';
@@ -188,7 +188,7 @@ describe('gulp-angular bower template', function () {
     result.should.not.match(/foundation/);
     result.should.not.match(/angular-material/);
     result.should.not.match(/material-design-lite/);
-    result.should.not.match(/material-design-iconfont/);
+    result.should.not.match(/mdi/);
 
     model.props.ui.key = 'foundation';
     model.props.foundationComponents.key = 'angular-foundation';
@@ -198,7 +198,7 @@ describe('gulp-angular bower template', function () {
     result.should.not.match(/bootstrap/);
     result.should.not.match(/angular-material/);
     result.should.not.match(/material-design-lite/);
-    result.should.not.match(/material-design-iconfont/);
+    result.should.not.match(/mdi/);
   });
 
   it('should add traceur runtime when needed', function() {
