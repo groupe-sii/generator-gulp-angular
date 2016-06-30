@@ -17,19 +17,30 @@ module.exports = function(GulpAngularGenerator) {
      * Pass through each files and actually copy them
      */
     GulpAngularGenerator.prototype.writeFiles = function writeFiles() {
-        this.files.forEach(function(file) {
-            var dest = utils.replacePrefix(file.dest, this.props.paths);
-            try {
-                if (file.template) {
-                    this.fs.copyTpl(this.templatePath(file.src), this.destinationPath(dest), this);
-                } else {
-                    this.fs.copy(this.templatePath(file.src), this.destinationPath(dest));
-                }
-            } catch (error) {
-                console.error('Template processing error on file', file.src);
-                throw error;
-            }
-        }, this);
+      var files = [];
+
+      // Remove bower file is NPM package manager was choosen
+      if (this.props.packageManager.key === 'npm') {
+        files = this.files.filter(function (file) {
+          return file.src !== '_bower.json' && file.src !== '.bowerrc';
+        });
+      }
+      console.log(files);
+
+      files.forEach(function(file) {
+        var dest = utils.replacePrefix(file.dest, this.props.paths);
+
+        try {
+          if (file.template) {
+            this.fs.copyTpl(this.templatePath(file.src), this.destinationPath(dest), this);
+          } else {
+            this.fs.copy(this.templatePath(file.src), this.destinationPath(dest));
+          }
+        } catch (error) {
+          console.error('Template processing error on file', file.src);
+          throw error;
+        }
+      }, this);
     };
 
     /**

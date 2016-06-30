@@ -30,7 +30,12 @@ exports.wiredep = {
 <% if(wiredepExclusions.length > 0) { -%>
     exclude: [<%- wiredepExclusions.join(', ') %>],
 <% } -%>
+<% if (props.packageManager.key === 'npm') { -%>
+    bowerJson: require('../package.json'),
+    directory: 'node_modules'
+<% } else if (props.packageManager.key === 'bower') { -%>
     directory: 'bower_components'
+<% } -%>
 };
 
 /**

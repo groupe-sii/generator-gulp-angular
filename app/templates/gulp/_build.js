@@ -56,13 +56,29 @@ gulp.task('html', ['inject', 'partials'], function () {
         .pipe(cssFilter)
         .pipe($.sourcemaps.init())
 <% if (props.ui.key === 'bootstrap' && props.cssPreprocessor.extension === 'scss') { -%>
+    <% if (props.packageManager.key === 'npm') { -%>
+        .pipe($.replace('../<%- computedPaths.appToBower %>/node_modules/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
+    <% } else if (props.packageManager.key === 'bower') { -%>
         .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
+    <% } -%>
 <% } else if (props.ui.key === 'bootstrap' && props.cssPreprocessor.extension === 'less') { -%>
+    <% if (props.packageManager.key === 'npm') { -%>
+        .pipe($.replace('../<%- computedPaths.appToBower %>/node_modules/bootstrap/fonts/', '../fonts/'))
+    <% } else if (props.packageManager.key === 'bower') { -%>
         .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/bootstrap/fonts/', '../fonts/'))
+    <% } -%>
 <% } else if (props.ui.key === 'bootstrap' && props.cssPreprocessor.extension === 'styl') { -%>
+    <% if (props.packageManager.key === 'npm') { -%>
+        .pipe($.replace('../<%- computedPaths.appToBower %>/node_modules/bootstrap-stylus/fonts/', '../fonts/'))
+    <% } else if (props.packageManager.key === 'bower') { -%>
         .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/bootstrap-stylus/fonts/', '../fonts/'))
+    <% } -%>
 <% } else if (props.ui.key === 'material-design-lite' || props.ui.key === 'angular-material') { -%>
+    <% if (props.packageManager.key === 'npm') { -%>
+        .pipe($.replace('../<%- computedPaths.appToBower %>/node_modules/material-design-iconfont/iconfont/', '../fonts/'))
+    <% } else if (props.packageManager.key === 'bower') { -%>
         .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/material-design-iconfont/iconfont/', '../fonts/'))
+    <% } -%>
 <% } -%>
         .pipe($.minifyCss({ processImport: false }))
         .pipe($.rev())
@@ -95,9 +111,17 @@ gulp.task('images', function () {
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
 <% if (props.ui.key === 'bootstrap' && props.cssPreprocessor.extension === 'styl') { -%>
+    <% if (this.props.packageManager.key === 'npm') { -%>
+    return gulp.src($.mainBowerFiles().concat('node_modules/bootstrap-stylus/fonts/*'))
+    <% } else if (this.props.packageManager.key === 'bower') { -%>
     return gulp.src($.mainBowerFiles().concat('bower_components/bootstrap-stylus/fonts/*'))
+    <% } -%>
 <% } else if (props.ui.key === 'material-design-lite' || props.ui.key === 'angular-material') { -%>
+    <% if (this.props.packageManager.key === 'npm') { -%>
+    return gulp.src($.mainBowerFiles().concat('node_modules/material-design-iconfont/iconfont/*'))
+    <% } else if (this.props.packageManager.key === 'bower') { -%>
     return gulp.src($.mainBowerFiles().concat('bower_components/material-design-iconfont/iconfont/*'))
+    <% } -%>
 <% } else { -%>
     return gulp.src($.mainBowerFiles())
 <% } -%>

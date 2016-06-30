@@ -21,7 +21,11 @@ function browserSyncInit(baseDir, browser) {
   var routes = null;
   if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
     routes = {
+      <% if (props.packageManager.key === 'npm') { -%>
+      '/node_modules': 'node_modules'
+      <% } else if (props.packageManager.key === 'bower') { -%>
       '/bower_components': 'bower_components'
+      <% } -%>
     };
   }
 

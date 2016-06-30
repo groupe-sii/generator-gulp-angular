@@ -67,8 +67,8 @@
   "devDependencies": {
     "angular-mocks": "<%- props.angularVersion %>"
   },
-<% if (bowerOverrides !== null) { -%>
-  "overrides": <%- bowerOverrides %>,
+<% if (packageManagerOverrides !== null) { -%>
+  "overrides": <%- packageManagerOverrides %>,
 <% } -%>
   "resolutions": {
 <% if (props.jQuery.key === 'jquery1') { -%>

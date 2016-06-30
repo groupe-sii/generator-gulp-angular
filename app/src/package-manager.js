@@ -5,18 +5,18 @@ var _ = require('lodash');
 module.exports = function(GulpAngularGenerator) {
 
   /**
-   * Prepare Bower overrides property to fix external bower.json with missing
+   * Prepare NPM overrides property to fix external package.json with missing
    * or incomplete main property (needed by wiredep)
    */
-  GulpAngularGenerator.prototype.prepareBowerOverrides = function prepareBowerOverrides() {
+  GulpAngularGenerator.prototype.preparePackageManagerOverrides = function preparePackageManagerOverrides() {
 
-    var bowerOverrides = {};
+    var packageManagerOverrides = {};
 
     if (this.props.ui.key === 'bootstrap') {
 
       if (this.props.cssPreprocessor.extension === 'scss') {
 
-        bowerOverrides['bootstrap-sass'] = {
+          packageManagerOverrides['bootstrap-sass'] = {
           main: [
             'assets/stylesheets/_bootstrap.scss',
             'assets/fonts/bootstrap/glyphicons-halflings-regular.eot',
@@ -28,12 +28,12 @@ module.exports = function(GulpAngularGenerator) {
         };
 
         if (this.props.bootstrapComponents.key === 'official') {
-          bowerOverrides['bootstrap-sass'].main.unshift('assets/javascripts/bootstrap.js');
+            packageManagerOverrides['bootstrap-sass'].main.unshift('assets/javascripts/bootstrap.js');
         }
 
       } else {
 
-        bowerOverrides.bootstrap = {
+          packageManagerOverrides.bootstrap = {
           main: [
             'dist/fonts/glyphicons-halflings-regular.eot',
             'dist/fonts/glyphicons-halflings-regular.svg',
@@ -44,30 +44,36 @@ module.exports = function(GulpAngularGenerator) {
         };
 
         if (this.props.bootstrapComponents.key === 'official') {
-          bowerOverrides.bootstrap.main.unshift('dist/js/bootstrap.js');
+            packageManagerOverrides.bootstrap.main.unshift('dist/js/bootstrap.js');
         }
 
       }
 
       if (this.props.cssPreprocessor.key === 'noCssPrepro') {
-        bowerOverrides.bootstrap.main.unshift('dist/css/bootstrap.css');
+          packageManagerOverrides.bootstrap.main.unshift('dist/css/bootstrap.css');
       }
 
       if (this.props.cssPreprocessor.key === 'less') {
-        bowerOverrides.bootstrap.main.unshift('less/bootstrap.less');
+          packageManagerOverrides.bootstrap.main.unshift('less/bootstrap.less');
       }
     }
 
+    if (this.props.bootstrapComponents.key === 'ui-bootstrap') {
+      packageManagerOverrides['angular-ui-bootstrap'] = {
+        main: './dist/ui-bootstrap.js'
+      };
+    }
+
     if (this.props.router.key === 'new-router') {
-      bowerOverrides['angular-new-router'] = {
+        packageManagerOverrides['angular-new-router'] = {
         main: [ 'dist/router.es5.js' ]
       };
     }
 
-    if (_.isEmpty(bowerOverrides)) {
-      this.bowerOverrides = null;
+    if (_.isEmpty(packageManagerOverrides)) {
+      this.packageManagerOverrides = null;
     } else {
-      this.bowerOverrides = JSON.stringify(bowerOverrides, null, 2)
+      this.packageManagerOverrides = JSON.stringify(packageManagerOverrides, null, 2)
         .replace(/\n/g, '\n  ');
     }
 

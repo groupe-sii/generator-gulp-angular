@@ -1,10 +1,73 @@
 {
   "name": "<%- props.appName %>",
   "version": "0.0.0",
-  "dependencies": {},
   "scripts": {
     "test": "gulp test",
     "postinstall": "cd docs/application && bower install"
+  },
+  "dependencies": {
+    "angular": "<%- props.angularVersion %>",
+    "angular-toastr": "~1.5.0",
+<% if (includeModernizr) { -%>
+    "modernizr": "~2.8.3",
+<% } if (angularModulesObject.animate) { -%>
+    "angular-animate": "<%- props.angularVersion %>",
+<% } if (angularModulesObject.cookies) { -%>
+    "angular-cookies": "<%- props.angularVersion %>",
+<% } if (angularModulesObject.touch) { -%>
+    "angular-touch": "<%- props.angularVersion %>",
+<% } if (angularModulesObject.sanitize) { -%>
+    "angular-sanitize": "<%- props.angularVersion %>",
+<% } if (angularModulesObject.messages) { -%>
+    "angular-messages": "<%- props.angularVersion %>",
+<% } if (angularModulesObject.aria) { -%>
+    "angular-aria": "<%- props.angularVersion %>",
+<% } if (props.jQuery.key === 'jquery1') { -%>
+    "jquery": "~1.11.3",
+<% } if (props.jQuery.key === 'jquery2') { -%>
+    "jquery": "~2.1.4",
+<% } if (props.jQuery.key === 'zepto') { -%>
+    "zepto": "~1.1.6",
+<% } if (props.resource.key === 'angular-resource') { -%>
+    "angular-resource": "<%- props.angularVersion %>",
+<% } if (props.router.key === 'angular-route') { -%>
+    "angular-route": "<%- props.angularVersion %>",
+<% } if (props.router.key === 'ui-router') { -%>
+    "angular-ui-router": "~0.2.18",
+<% } if (props.router.key === 'new-router') { -%>
+    "angular-new-router": "~0.5.3",
+<% } if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>
+    "angular-translate": "~2.7.2",
+<% } if(props.bootstrapComponents.key === 'ui-bootstrap') { -%>
+    "angular-ui-bootstrap": "~1.3.3",
+<% } if(props.ui.key === 'bootstrap') { -%>
+<%   if(props.cssPreprocessor.extension === 'scss') { -%>
+    "bootstrap-sass": "~3.3.6",
+    "jquery": "^3.0.0",
+<%   } else if(props.cssPreprocessor.extension === 'styl') { -%>
+    "bootstrap-stylus": "~4.0.4",
+<%   } else { -%>
+    "bootstrap": "~3.3.5",
+<%   } -%>
+<% } if(props.ui.key === 'foundation') { -%>
+    "foundation": "~5.5.2",
+<% } if(props.ui.key === 'angular-material') { -%>
+    "angular-material": "~0.10.1",
+    "material-design-iconfont": "~0.0.2",
+<% } if(props.ui.key === 'material-design-lite') { -%>
+    "material-design-lite": "~1.0.4",
+    "material-design-iconfont": "~0.0.2",
+<% } if(props.bootstrapComponents.key === 'angular-strap') { -%>
+    "angular-strap": "~2.3.1",
+<% } if(props.foundationComponents.key === 'angular-foundation') { -%>
+    "angular-foundation": "~0.6.0",
+<% } if(props.jsPreprocessor.key === 'traceur') { -%>
+    "traceur-runtime": "~0.0.90",
+<% } if (props.resource.key === 'restangular') { -%>
+    "restangular": "~1.5.1",
+<% } -%>
+    "moment": "~2.11.2",
+    "animate.css": "~3.5.1"
   },
   "devDependencies": {
     "gulp": "~3.9.1",
@@ -104,6 +167,9 @@
     "gulp-gzip": "1.2.0",
     "gulp-run": "1.6.12"
   },
+<% if (packageManagerOverrides !== null) { -%>
+  "overrides": <%- packageManagerOverrides %>,
+<% } -%>
   "engines": {
     "node": ">=0.10.0"
   }

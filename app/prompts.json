@@ -394,6 +394,25 @@
     ]
   },
   {
+    "type": "list",
+    "name": "packageManager",
+    "message": "Which package manager do you want to use for core libraries?",
+    "choices": [
+      {
+        "value": {
+          "key": "npm"
+        },
+        "name": "NPM, the NodeJS package manager"
+      },
+      {
+        "value": {
+          "key": "bower"
+        },
+        "name": "Bower, a package manager for the web"
+      }
+    ]
+  },
+  {
     "type": "checkbox",
     "name": "otherModules",
     "message": "Here is some other modules you might be interested in",

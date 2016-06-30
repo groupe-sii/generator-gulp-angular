@@ -7,19 +7,13 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'del', 'run-sequence', 'main-bower-files']
     }),
-    bowerFiles = require('../docs/application/lib/bowerCommonFiles')({
-        base: '../../deps',
-        exclude: [/bootstrap.js/],
-        bowerJson: require('../bower.json')
-    }),
     deployment = {
         name: 'default',
         examples: {
-
             // These files are injected to examples' html.
             commonFiles: {
-                scripts: _.union(bowerFiles.scripts, ['../../modules.js']),
-                stylesheets: _.union(bowerFiles.stylesheets, ['../../modules.css'])
+                scripts: '../../modules.js',
+                stylesheets: '../../modules.css'
             },
             dependencyPath: '../../deps'
         }
@@ -56,7 +50,7 @@ gulp.task('docs:partials', ['docs:dgeni'], function() {
             removeAttributeQuotes: true
         }))
         .pipe($.ngHtml2js({
-          moduleName: 'docApp'
+            moduleName: 'docApp'
         }))
         .pipe(gulp.dest('.tmp_docs/partials'))
         .pipe($.size());
@@ -85,11 +79,7 @@ gulp.task('docs:html', ['docs:partials'], function() {
 });
 
 gulp.task('docs:fonts', function() {
-    return gulp.src($.mainBowerFiles({
-        bowerDirectory: 'docs/application/bower_components',
-        bowerJson: 'docs/application/bower.json'
-    }))
-        .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+    return gulp.src('docs/application/bower_components/**/*.{eot,svg,ttf,woff,woff2}')
         .pipe($.flatten())
         .pipe(gulp.dest(conf.paths.dist + '/' + conf.paths.doc + '/fonts'))
         .pipe($.size());
@@ -114,7 +104,7 @@ gulp.task('docs:build', function() {
     $.runSequence(
         'docs:clean:tmp',
         'docs:clean:dist',
-        'docs:archi-graph',
+        //'docs:archi-graph',
         'docs:fonts',
         'docs:html',
         'docs:clean:tmp'
