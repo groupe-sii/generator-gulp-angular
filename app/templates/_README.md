@@ -16,7 +16,7 @@
 * NodeJS & npm
 * git
 * conf proxy si besoin (cf: https://gist.github.com/manekinekko/2b4a29fe35c292b6f72f)
-* modules gulp<% if (props.packageManager.key === 'bower') { -%>et bower <% } -%> en global
+* modules gulp<% if (props.packageManager.key === 'bower') { -%> et bower <% } -%> en global
 
 
 ## Installation
