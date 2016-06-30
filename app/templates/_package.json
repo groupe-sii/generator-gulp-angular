@@ -5,7 +5,7 @@
     "test": "gulp test",
     "postinstall": "cd docs/application && bower install"
   },
-  "dependencies": {
+  "dependencies": {<% if (props.packageManager.key === 'npm') { -%>
     "angular": "<%- props.angularVersion %>",
     "angular-toastr": "~1.5.0",
 <% if (includeModernizr) { -%>
@@ -68,6 +68,7 @@
 <% } -%>
     "moment": "~2.11.2",
     "animate.css": "~3.5.1"
+<% } -%>
   },
   "devDependencies": {
     "gulp": "~3.9.1",
