@@ -75,9 +75,9 @@ gulp.task('html', ['inject', 'partials'], function () {
     <% } -%>
 <% } else if (props.ui.key === 'material-design-lite' || props.ui.key === 'angular-material') { -%>
     <% if (props.packageManager.key === 'npm') { -%>
-        .pipe($.replace('../<%- computedPaths.appToBower %>/node_modules/material-design-iconfont/iconfont/', '../fonts/'))
+        .pipe($.replace('../<%- computedPaths.appToBower %>/node_modules/mdi/fonts/', '../fonts/'))
     <% } else if (props.packageManager.key === 'bower') { -%>
-        .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/material-design-iconfont/iconfont/', '../fonts/'))
+        .pipe($.replace('../<%- computedPaths.appToBower %>/bower_components/mdi/fonts/', '../fonts/'))
     <% } -%>
 <% } -%>
         .pipe($.minifyCss({ processImport: false }))
@@ -111,16 +111,16 @@ gulp.task('images', function () {
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
 <% if (props.ui.key === 'bootstrap' && props.cssPreprocessor.extension === 'styl') { -%>
-    <% if (this.props.packageManager.key === 'npm') { -%>
+    <% if (props.packageManager.key === 'npm') { -%>
     return gulp.src($.mainBowerFiles().concat('node_modules/bootstrap-stylus/fonts/*'))
-    <% } else if (this.props.packageManager.key === 'bower') { -%>
+    <% } else if (props.packageManager.key === 'bower') { -%>
     return gulp.src($.mainBowerFiles().concat('bower_components/bootstrap-stylus/fonts/*'))
     <% } -%>
 <% } else if (props.ui.key === 'material-design-lite' || props.ui.key === 'angular-material') { -%>
-    <% if (this.props.packageManager.key === 'npm') { -%>
-    return gulp.src($.mainBowerFiles().concat('node_modules/material-design-iconfont/iconfont/*'))
-    <% } else if (this.props.packageManager.key === 'bower') { -%>
-    return gulp.src($.mainBowerFiles().concat('bower_components/material-design-iconfont/iconfont/*'))
+    <% if (props.packageManager.key === 'npm') { -%>
+    return gulp.src($.mainBowerFiles().concat('node_modules/mdi/fonts/*'))
+    <% } else if (props.packageManager.key === 'bower') { -%>
+    return gulp.src($.mainBowerFiles().concat('bower_components/mdi/fonts/*'))
     <% } -%>
 <% } else { -%>
     return gulp.src($.mainBowerFiles())

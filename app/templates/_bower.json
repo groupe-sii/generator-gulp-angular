@@ -44,10 +44,10 @@
     "foundation": "~5.5.2",
 <% } if(props.ui.key === 'angular-material') { -%>
     "angular-material": "~0.10.1",
-    "material-design-iconfont": "~0.0.2",
+    "mdi": "^1.6.50",
 <% } if(props.ui.key === 'material-design-lite') { -%>
     "material-design-lite": "~1.0.4",
-    "material-design-iconfont": "~0.0.2",
+    "mdi": "^1.6.50",
 <% } if(props.bootstrapComponents.key === 'ui-bootstrap') { -%>
     "angular-bootstrap": "~0.14.3",
 <% } if(props.bootstrapComponents.key === 'angular-strap') { -%>

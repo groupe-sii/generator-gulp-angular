@@ -58,6 +58,12 @@ module.exports = function(GulpAngularGenerator) {
       }
     }
 
+    if (this.props.ui.key === 'angular-material' || this.props.ui.key === 'material-design-lite') {
+      packageManagerOverrides['mdi'] = {
+        main: 'css/materialdesignicons.min.css'
+      }
+    }
+
     if (this.props.bootstrapComponents.key === 'ui-bootstrap') {
       packageManagerOverrides['angular-ui-bootstrap'] = {
         main: './dist/ui-bootstrap.js'
