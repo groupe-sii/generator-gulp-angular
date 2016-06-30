@@ -110,20 +110,31 @@ gulp.task('images', function () {
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
+    var mainBowerFilesOptions = {};
+
+<% if (props.packageManager.key === 'npm') { -%>
+    mainBowerFilesOptions = {
+        paths: {
+            bowerDirectory: 'node_modules',
+            bowerJson: 'package.json'
+        }
+    };
+<% } -%>
+
 <% if (props.ui.key === 'bootstrap' && props.cssPreprocessor.extension === 'styl') { -%>
     <% if (props.packageManager.key === 'npm') { -%>
-    return gulp.src($.mainBowerFiles().concat('node_modules/bootstrap-stylus/fonts/*'))
+    return gulp.src($.mainBowerFiles(mainBowerFilesOptions).concat('node_modules/bootstrap-stylus/fonts/*'))
     <% } else if (props.packageManager.key === 'bower') { -%>
-    return gulp.src($.mainBowerFiles().concat('bower_components/bootstrap-stylus/fonts/*'))
+    return gulp.src($.mainBowerFiles(mainBowerFilesOptions).concat('bower_components/bootstrap-stylus/fonts/*'))
     <% } -%>
 <% } else if (props.ui.key === 'material-design-lite' || props.ui.key === 'angular-material') { -%>
     <% if (props.packageManager.key === 'npm') { -%>
-    return gulp.src($.mainBowerFiles().concat('node_modules/mdi/fonts/*'))
+    return gulp.src($.mainBowerFiles(mainBowerFilesOptions).concat('node_modules/mdi/fonts/*'))
     <% } else if (props.packageManager.key === 'bower') { -%>
-    return gulp.src($.mainBowerFiles().concat('bower_components/mdi/fonts/*'))
+    return gulp.src($.mainBowerFiles(mainBowerFilesOptions).concat('bower_components/mdi/fonts/*'))
     <% } -%>
 <% } else { -%>
-    return gulp.src($.mainBowerFiles())
+    return gulp.src($.mainBowerFiles(mainBowerFilesOptions))
 <% } -%>
         .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
         .pipe($.flatten())
