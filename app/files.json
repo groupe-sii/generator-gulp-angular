@@ -43,13 +43,15 @@
     "docs/application/app/index.html",
     "docs/application/app/env_dist.js",
     "docs/application/app/styles/docs.css",
+    "docs/application/app/styles/monokai-sublime.css",
     "docs/application/app/src/a.directive.js",
     "docs/application/app/src/docs.controller.js",
     "docs/application/app/src/index.js",
     "docs/application/app/src/main.html",
     "docs/application/app/src/navbar.controller.js",
     "docs/application/app/src/navbar.html",
-    "docs/application/app/src/pre.directive.js"
+    "docs/application/app/src/pre.directive.js",
+    "docs/application/app/src/vendor/highlight.pack.js"
   ],
   "templates": [
     ".gitignore",
