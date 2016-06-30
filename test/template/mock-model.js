@@ -30,6 +30,6 @@ module.exports = function() {
     includeModernizr: false,
     imageMin: false,
     qrCode: false,
-    bowerOverrides: null
+    packageManagerOverrides: null
   });
 };

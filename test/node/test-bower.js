@@ -7,7 +7,7 @@ var expect = chai.expect;
 var Generator = require('./mock-generator');
 var generator;
 
-var bower = require('../../app/src/bower.js');
+var bower = require('../../app/src/npm.js');
 
 describe('gulp-angular generator bower script', function () {
 
@@ -31,8 +31,8 @@ describe('gulp-angular generator bower script', function () {
         ui: { key: 'notbootstrap' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      expect(generator.bowerOverrides).to.be.null;
+      generator.preparePackageManagerOverrides();
+      expect(generator.packageManagerOverrides).to.be.null;
     });
 
     it('should add fonts and js for bootstrap and official js', function() {
@@ -42,8 +42,8 @@ describe('gulp-angular generator bower script', function () {
         cssPreprocessor: { key: 'something' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      var bootstrapMain = JSON.parse(generator.bowerOverrides).bootstrap.main;
+      generator.preparePackageManagerOverrides();
+      var bootstrapMain = JSON.parse(generator.packageManagerOverrides).bootstrap.main;
       var first = bootstrapMain.shift();
       first.should.match(/bootstrap\.js/);
       allFonts(bootstrapMain);
@@ -56,8 +56,8 @@ describe('gulp-angular generator bower script', function () {
         cssPreprocessor: { key: 'noCssPrepro' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      var bootstrapMain = JSON.parse(generator.bowerOverrides).bootstrap.main;
+      generator.preparePackageManagerOverrides();
+      var bootstrapMain = JSON.parse(generator.packageManagerOverrides).bootstrap.main;
       var first = bootstrapMain.shift();
       first.should.match(/bootstrap\.css/);
       allFonts(bootstrapMain);
@@ -70,8 +70,8 @@ describe('gulp-angular generator bower script', function () {
         cssPreprocessor: { key: 'notnone', extension: 'scss' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      var bootstrapMain = JSON.parse(generator.bowerOverrides)['bootstrap-sass'].main;
+      generator.preparePackageManagerOverrides();
+      var bootstrapMain = JSON.parse(generator.packageManagerOverrides)['bootstrap-sass'].main;
       bootstrapMain.length.should.be.equal(7);
       var first = bootstrapMain.shift();
       first.should.match(/bootstrap\.js/);
@@ -87,8 +87,8 @@ describe('gulp-angular generator bower script', function () {
         cssPreprocessor: { key: 'notnone', extension: 'scss' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      var bootstrapMain = JSON.parse(generator.bowerOverrides)['bootstrap-sass'].main;
+      generator.preparePackageManagerOverrides();
+      var bootstrapMain = JSON.parse(generator.packageManagerOverrides)['bootstrap-sass'].main;
       bootstrapMain.length.should.be.equal(6);
       var first = bootstrapMain.shift();
       first.should.match(/_bootstrap\.scss/);
@@ -102,8 +102,8 @@ describe('gulp-angular generator bower script', function () {
         cssPreprocessor: { key: 'less' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      var bootstrapMain = JSON.parse(generator.bowerOverrides).bootstrap.main;
+      generator.preparePackageManagerOverrides();
+      var bootstrapMain = JSON.parse(generator.packageManagerOverrides).bootstrap.main;
       var first = bootstrapMain.shift();
       first.should.match(/bootstrap\.less/);
       allFonts(bootstrapMain);
@@ -114,8 +114,8 @@ describe('gulp-angular generator bower script', function () {
         ui: { key: 'notbootstrap' },
         router: { key: 'new-router' }
       };
-      generator.prepareBowerOverrides();
-      var routerMain = JSON.parse(generator.bowerOverrides)['angular-new-router'].main;
+      generator.preparePackageManagerOverrides();
+      var routerMain = JSON.parse(generator.packageManagerOverrides)['angular-new-router'].main;
       var first = routerMain.shift();
       first.should.match(/router\.es5\.js/);
     });
@@ -127,8 +127,8 @@ describe('gulp-angular generator bower script', function () {
         cssPreprocessor: { key: 'something' },
         router: { key: 'notnewrouter' }
       };
-      generator.prepareBowerOverrides();
-      generator.bowerOverrides.should.match(/^{.*\n {4}/);
+      generator.preparePackageManagerOverrides();
+      generator.packageManagerOverrides.should.match(/^{.*\n {4}/);
     });
 
   });

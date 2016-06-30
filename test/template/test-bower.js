@@ -212,11 +212,11 @@ describe('gulp-angular bower template', function () {
   });
 
   it('should add overrides if needed', function() {
-    model.bowerOverrides = null;
+    model.packageManagerOverrides = null;
     var result = bower(model);
     result.should.not.match(/overrides/);
 
-    model.bowerOverrides = 'test value';
+    model.packageManagerOverrides = 'test value';
     result = bower(model);
     result.should.match(/"overrides": test value,/);
   });
