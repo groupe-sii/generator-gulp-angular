@@ -20,5 +20,7 @@ angular.module('docApp', ['ui.bootstrap'])
 			rewriteLinks: true
 		});
 	}
+})
+.run(function() {
+	hljs.initHighlightingOnLoad();
 });
-
