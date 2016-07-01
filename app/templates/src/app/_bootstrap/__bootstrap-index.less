@@ -11,7 +11,7 @@
  */
 
 @navbar-inverse-link-color: #5AADBB;
-@icon-font-path: '../<%- computedPaths.appToBower %>/bower_components/bootstrap/fonts/';
+@icon-font-path: '../<%- computedPaths.appToBower %>/<% if (props.packageManager.key === 'bower') { -%>bower_components<% } else { -%>node_modules<% } -%>/bootstrap/fonts/';
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;

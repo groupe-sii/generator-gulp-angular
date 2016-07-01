@@ -5,54 +5,61 @@
 // bower:scss
 // endbower
 
+<% if (props.otherModulesKeys.indexOf('sass71') === -1) { -%>
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 
 main {
-    padding: 20px;
-    background: #fafafa;
+  padding: 20px;
+  background: #fafafa;
 }
 
 .acme-card-wide {
-    &.mdl-card {
-        width: 100%;
-    }
-    > .mdl-card__title {
-        color: #fff;
-        height: 176px;
-        background: url('../assets/images/yeoman.png') center / cover;
-        background-size: 110px;
-        background-repeat: no-repeat;
-    }
-    > .mdl-card__title > .mdl-card__title-text {
-        color: #000;
-    }
-    > .mdl-card__menu {
-        color: #000;
-    }
-    > .mdl-card__actions {
-        text-align: center;
-    }
+  &.mdl-card {
+    width: 100%;
+  }
+
+  > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('../assets/images/yeoman.png') center / cover;
+    background-size: 110px;
+    background-repeat: no-repeat;
+  }
+
+  > .mdl-card__title > .mdl-card__title-text {
+    color: #000;
+  }
+
+  > .mdl-card__menu {
+    color: #000;
+  }
+
+  > .mdl-card__actions {
+    text-align: center;
+  }
 }
 
 .acme-card-square {
-    &.mdl-card {
-        width: 100%;
-        min-height: 200px;
-    }
-    > .mdl-card__title {
-        color: #fff;
-        background: #283593;
-    }
-    > .mdl-card__media {
-        color: #fff;
-        background: none;
-        text-align: center;
-        img {
-            height: 100px;
-        }
-    }
-}
+  &.mdl-card {
+    width: 100%;
+    min-height: 200px;
+  }
 
+  > .mdl-card__title {
+    color: #fff;
+    background: #283593;
+  }
+
+  > .mdl-card__media {
+    color: #fff;
+    background: none;
+    text-align: center;
+
+    img {
+      height: 100px;
+    }
+  }
+}
 
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject
@@ -61,3 +68,26 @@ main {
 
 // injector
 // endinjector
+<% } else { -%>
+
+// Abstracts
+@import '../styles/abstracts/variables';
+
+// Vendors
+
+// Base
+@import '../styles/base/typography';
+@import '../styles/base/core';
+
+// Layout
+@import '../styles/layout/header';
+
+// Components
+@import '../styles/components/button';
+
+// Pages
+@import '../styles/pages/home';
+
+// Themes
+@import '../styles/themes/theme';
+<% } -%>

@@ -6,57 +6,58 @@ var alwaysUsedTechs = ['angular', 'browsersync', 'gulp', 'jasmine', 'karma', 'pr
 
 module.exports = function(GulpAngularGenerator) {
 
-    /**
-     * Format list techs used to generate app included in main view of sample
-     */
-    GulpAngularGenerator.prototype.computeTechs = function computeTechs() {
-        var usedTechs = alwaysUsedTechs.concat([
-                this.props.jQuery.name,
-                this.props.ui.key,
-                this.props.bootstrapComponents.key,
-                this.props.foundationComponents.key,
-                this.props.cssPreprocessor.key,
-                this.props.jsPreprocessor.key,
-                this.props.htmlPreprocessor.key
-            ])
-            .filter(_.isString)
-            .filter(function(tech) {
-                return listTechs[tech] !== undefined;
-            });
+  /**
+   * Format list techs used to generate app included in main view of sample
+   */
+  GulpAngularGenerator.prototype.computeTechs = function computeTechs() {
+    var usedTechs = alwaysUsedTechs.concat([
+        this.props.jQuery.name,
+        this.props.ui.key,
+        this.props.bootstrapComponents.key,
+        this.props.foundationComponents.key,
+        this.props.cssPreprocessor.key,
+        this.props.jsPreprocessor.key,
+        this.props.htmlPreprocessor.key
+      ])
+      .filter(_.isString)
+      .filter(function(tech) {
+        return listTechs[tech] !== undefined;
+      });
 
-        var techsContent = _.map(usedTechs, function(value) {
-            return listTechs[value];
-        });
+    var techsContent = _.map(usedTechs, function(value) {
+      return listTechs[value];
+    });
 
-        this.technologies = JSON.stringify(techsContent, null, 2)
-            .replace(/'/g, '\\\'')
-            .replace(/"/g, '\'')
-            .replace(/\n/g, '\n              ');
-        this.siiTechnologies = JSON.stringify(_.map(this.props.otherModulesKeys, function(module) {
-                return listTechs[module];
-            }), null, 2)
-            .replace(/'/g, '\\\'')
-            .replace(/"/g, '\'')
-            .replace(/\n/g, '\n              ');
+    this.technologies = JSON.stringify(techsContent, null, 2)
+      .replace(/'/g, '\\\'')
+      .replace(/"/g, '\'')
+      .replace(/\n/g, '\n              ');
 
-        usedTechs.forEach(function(value) {
-            var path = 'src/assets/images/' + listTechs[value].logo;
+    this.siiTechnologies = JSON.stringify(_.map(this.props.otherModulesKeys, function(module) {
+        return listTechs[module];
+      }), null, 2)
+      .replace(/'/g, '\\\'')
+      .replace(/"/g, '\'')
+      .replace(/\n/g, '\n              ');
 
-            this.files.push({
-                src: path,
-                dest: path,
-                template: false
-            });
-        }, this);
+    usedTechs.forEach(function(value) {
+      var path = 'src/assets/images/' + listTechs[value].logo;
 
-        this.props.otherModulesKeys.forEach(function(value) {
-            var path = 'src/assets/images/' + listTechs[value].logo;
+      this.files.push({
+        src: path,
+        dest: path,
+        template: false
+      });
+    }, this);
 
-            this.files.push({
-                src: path,
-                dest: path,
-                template: false
-            });
-        }, this);
-    };
+    this.props.otherModulesKeys.forEach(function(value) {
+      var path = 'src/assets/images/' + listTechs[value].logo;
+
+      this.files.push({
+        src: path,
+        dest: path,
+        template: false
+      });
+    }, this);
+  };
 };

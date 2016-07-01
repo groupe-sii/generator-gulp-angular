@@ -1,9 +1,7 @@
-/* Do not remove the comments below. It's the markers used by wiredep to inject
-   sass dependencies when defined in the bower.json of your dependencies */
-// bower:scss
-// endbower
+//----------------------------------------
+//  Core
+//----------------------------------------
 
-<% if (props.otherModulesKeys.indexOf('sass71') === -1) { -%>
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -115,37 +113,9 @@ a {
 }
 
 .pull-right {
-  float: right;
+    float: right;
 }
 
 hr {
-  clear: both;
+    clear: both;
 }
-
-/* Do not remove the comments below. It's the markers used by gulp-inject to inject
-   all your sass files automatically */
-
-// injector
-// endinjector
-<% } else { -%>
-
-// Abstracts
-@import '../styles/abstracts/variables';
-
-// Vendors
-
-// Base
-@import '../styles/base/core';
-
-// Layout
-@import '../styles/layout/header';
-
-// Components
-@import '../styles/components/button';
-
-// Pages
-@import '../styles/pages/home';
-
-// Themes
-@import '../styles/themes/theme';
-<% } -%>

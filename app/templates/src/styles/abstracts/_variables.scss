@@ -1,0 +1,9 @@
+//----------------------------------------
+//  Variables
+//----------------------------------------
+
+<% if (props.ui.key === 'bootstrap') { -%>
+$navbar-inverse-link-color: #5AADBB;
+<% } if (props.ui.key === 'foundation') { -%>
+$topbar-bg-color: #5AADBB;
+<% } -%>

@@ -53,7 +53,7 @@
 <% } if(props.bootstrapComponents.key === 'angular-strap') { -%>
     "angular-strap": "~2.3.1",
 <% } if(props.foundationComponents.key === 'angular-foundation') { -%>
-    "angular-foundation": "~0.6.0",
+    "angular-foundation": "~0.8.0",
 <% } if(props.jsPreprocessor.key === 'traceur') { -%>
     "traceur-runtime": "~0.0.90",
 <% } if (props.otherModulesKeys.indexOf('translate') !== -1) { -%>

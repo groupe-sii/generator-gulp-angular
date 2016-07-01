@@ -428,6 +428,13 @@
         },
         "name": "angular-translate (18n for your Angular app, made easy!)",
         "checked": false
+      },
+      {
+        "value": {
+          "key": "sass71"
+        },
+        "name": "Sass 7-1 pattern (only if you choose Sass as your CSS preprocessor)",
+        "checked": false
       }
     ]
   }
