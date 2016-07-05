@@ -85,8 +85,6 @@ yo gulp-angular-sii [app-name]
 
 ## License
 
-License
-
 The generator-gulp-angular is released under the MIT license.
 
 https://github.com/groupe-sii/generator-gulp-angular/blob/master/LICENSE
