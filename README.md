@@ -9,6 +9,9 @@
 
 > Gulp provide fast workspace with quick feedback.
 
+
+![Run generator-gulp-angular](docs/working.gif)
+
 ## Usage
 
 More informations, options, parameters in the [usage documentation page](docs/usage.md)
@@ -74,19 +77,16 @@ yo gulp-angular-sii [app-name]
 ## SII Modules
 
 * *[angular-translate](docs/sii/angular-translate.md)*: i18n for your Angular app, made easy!
+* *[sass-7-1](docs/sii/sass-7-1.md)*: Sass 7-1 pattern (only if you choose Sass as your CSS preprocessor)
 
 ## Questions the generator will ask
 
 [Questions the generator will ask](docs/usage.md#questions-the-generator-will-ask)
 
-## Changelog
-
-[All changes listed in the GitHub releases](https://github.com/Swiip/generator-gulp-angular/releases)
-
-## Contributing
-
-[Guidelines](CONTRIBUTING.md)
-
 ## License
 
-MIT
+License
+
+The generator-gulp-angular is released under the MIT license.
+
+https://github.com/groupe-sii/generator-gulp-angular/blob/master/LICENSE

@@ -117,6 +117,7 @@ There is none at the generation but you can add `.jade`, `.haml` or `.hbs` (depe
 
 
 ## Features included in the gulpfile
+
 * *useref* : allow configuration of your files in comments of your HTML file
 * *ngAnnotate* : convert simple injection to complete syntax to be minification proof
 * *uglify* : optimize all your JavaScript
@@ -130,6 +131,7 @@ There is none at the generation but you can add `.jade`, `.haml` or `.hbs` (depe
 * *angular-templatecache* : all HTML partials will be converted to JS to be bundled in the application
 
 ## Questions the generator will ask
+
 * *jQuery*: jQuery 1.x, 2.x, Zepto, none
 * *Angular modules*: animate, cookies, touch, sanitize
 * *Resource handler*: ngResource, Restangular, none
@@ -138,4 +140,5 @@ There is none at the generation but you can add `.jade`, `.haml` or `.hbs` (depe
 * *UI directives* : UI Bootstrap, Angular Strap, official Bootstrap JavaScript, Angular Foundation, official Foundation JavaScript, none (depends on the UI framework)
 * *CSS pre-processor*: Less, Sass with Ruby and Node, Stylus, none
 * *HTML preprocessor*: Jade, Haml, Handlebars, none
-* *SII Modules*: angular-translate
+* *Package manager*: NPM, Bower
+* *SII Modules*: angular-translate, Sass 7-1, Sonar
