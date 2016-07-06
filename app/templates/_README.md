@@ -4,12 +4,13 @@
 
 1. [Pré-requis machine](#pre-requis-machine)
 2. [Installation](#installation)
-3. [Tâches gulp](#taches-gulp)
-4. [Configuration](#configuration)
-5. [Analyse de code](#analyse-de-code)
-6. [Bonnes pratiques AngularJS](#bonnes-pratiques-angularjs)
-7. [Documentation](#documentation)
-8. [Tests](#tests)
+3. [Contribuer - Git Hook](#contribuer-git-hook)
+4. [Tâches gulp](#taches-gulp)
+5. [Configuration](#configuration)
+6. [Analyse de code](#analyse-de-code)
+7. [Bonnes pratiques AngularJS](#bonnes-pratiques-angularjs)
+8. [Documentation](#documentation)
+9. [Tests](#tests)
 
 ## Pré-requis machine
 
@@ -28,6 +29,19 @@ $ npm install --production  # Production
 $ bower install
 <% } -%>
 ```
+
+## Contribuer - Git Hook
+
+Pour contribuer, les messages de commits doivent tous respecter la convention `<type>(<scope>): <subject>`.
+Pour être sûr que cette convention est respectée, installez le hook git prévu à cet effet.
+
+Copiez le fichier `tools/git/commit-msg.js` à l'emplacement `.git/hooks/commit-msg`:
+
+```sh
+$ ln -s tools/git/commit-msg.js .git/hooks/commit-msg
+```
+
+Pour plus d'informations sur la convention de commits: [Convention de commits](COMMITS-CONVENTION.md)
 
 ## Tâches gulp
 

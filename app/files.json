@@ -8,6 +8,8 @@
 
     "gulpfile.js",
 
+    "COMMITS-CONVENTION.md",
+
     "src/favicon.ico",
     "src/assets/images/yeoman.png",
 
@@ -16,7 +18,8 @@
     "tests/intern-browser.local.js",
     "tests/intern-vanilla.js",
 
-    "tools/jenkins.sh",
+    "tools/git/commit-msg.js",
+    "tools/jenkins/jenkins.sh",
 
     "config/development/project.service.config.json",
     "config/production/project.service.config.json",
