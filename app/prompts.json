@@ -435,14 +435,7 @@
         },
         "name": "Sass 7-1 pattern (only if you choose Sass as your CSS preprocessor)",
         "checked": false
-      },
-      /*{
-        "value": {
-          "key": "sonar"
-        },
-        "name": "A gulp task to launch the linters and create Sonar reporters",
-        "checked": false
-      }*/
+      }
     ]
   }
 ]
